@@ -65,11 +65,8 @@
   .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;
     overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 
-  .head{display:flex;justify-content:flex-end;align-items:center;
-    font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
-
   .hero-lockup{display:grid;grid-template-columns:148px minmax(0,1fr);gap:28px;
-    align-items:center;margin:30px 0 26px;}
+    align-items:center;margin:0 0 26px;}
   .hero-mark{display:block;width:148px;height:148px;object-fit:contain;}
   h1.headline{font-family:var(--serif);font-weight:600;
     font-size:clamp(34px,6vw,52px);line-height:1.06;letter-spacing:-.01em;
@@ -83,21 +80,6 @@
   .metric .val{font-family:var(--serif);font-size:38px;line-height:1;margin-bottom:8px;}
   .metric .lab{font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px;}
   .metric .note{font-size:13px;color:var(--muted);line-height:1.4;}
-
-  .reading-path{margin:38px 0 8px;padding:22px;border:1px solid var(--rule-strong);
-    background:rgba(255,255,255,.18);}
-  .reading-path h2{margin:0 0 5px;font-family:var(--serif);font-size:22px;line-height:1.25;}
-  .reading-path>p{margin:0;color:var(--muted);font-size:14px;}
-  .reading-path ol{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
-    margin:20px 0 0;padding:0;list-style:none;counter-reset:path;}
-  .reading-path li{counter-increment:path;}
-  .reading-path a{display:block;height:100%;padding-top:10px;border-top:1px solid var(--rule);
-    text-decoration:none;}
-  .reading-path a::before{content:counter(path,decimal-leading-zero);display:block;
-    margin-bottom:5px;color:var(--muted);font-size:11px;letter-spacing:.12em;}
-  .reading-path a:hover .path-title{text-decoration:underline;text-underline-offset:3px;}
-  .path-title{display:block;font-size:14px;font-weight:600;line-height:1.3;}
-  .path-time{display:block;margin-top:3px;color:var(--muted);font-size:12px;}
 
   hr.rule{border:none;border-top:1px solid var(--rule-strong);margin:44px 0;}
 
@@ -124,6 +106,15 @@
     background:rgba(255,255,255,.12);font-size:13px;line-height:1.45;}
   .guide strong{display:block;margin-bottom:4px;font-size:10px;letter-spacing:.12em;
     text-transform:uppercase;color:var(--muted);}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:0 0 42px;
+    padding:0;list-style:none;counter-reset:steps;}
+  .steps li{counter-increment:steps;padding-top:14px;border-top:1px solid var(--rule-strong);}
+  .steps li::before{content:counter(steps,decimal-leading-zero);display:block;margin-bottom:7px;
+    color:var(--muted);font-size:11px;letter-spacing:.12em;}
+  .steps strong{display:block;margin-bottom:5px;font-size:15px;}
+  .steps span{display:block;color:var(--muted);font-size:13px;line-height:1.45;}
+  .subsection-head{margin:0 0 4px;font-size:13px;font-weight:600;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--muted);}
 
   .example-story{padding:4px 0 28px;}
   .example-intro{display:grid;grid-template-columns:.34fr .66fr;gap:28px;margin-bottom:24px;}
@@ -142,6 +133,10 @@
   .frame-meta{display:flex;justify-content:space-between;gap:18px;margin:9px 0 24px;
     color:var(--muted);font-size:12px;}
   .frame-meta a{min-height:44px;display:inline-flex;align-items:center;}
+  .output-head{display:flex;justify-content:space-between;align-items:baseline;gap:18px;
+    margin:22px 0 9px;}
+  .output-head strong{font-size:11px;letter-spacing:.12em;text-transform:uppercase;}
+  .output-head span{color:var(--muted);font-size:12px;text-align:right;}
   .after-note{display:grid;grid-template-columns:.34fr .66fr;gap:28px;padding-top:20px;
     border-top:1px solid var(--rule);}
   .after-note>*{min-width:0;}
@@ -187,11 +182,10 @@
     .item{grid-template-columns:1fr;gap:10px;padding:20px 0;}
     .metrics{gap:14px;}
     .metric .val{font-size:30px;}
-    .reading-path{padding:18px;}
-    .reading-path ol{grid-template-columns:repeat(2,1fr);}
     .hero-lockup{grid-template-columns:104px minmax(0,1fr);gap:18px;margin:26px 0 22px;}
     .hero-mark{width:104px;height:104px;}
     .guidance{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr;gap:14px;margin-bottom:34px;}
     .example-intro,.after-note{grid-template-columns:1fr;gap:8px;}
     .entry-field{grid-template-columns:1fr;gap:4px;}
     .example-frame{height:390px;}
@@ -206,17 +200,17 @@
   @media (max-width:420px){
     body{font-size:16px;}
     .wrap{padding-inline:16px;}
-    .head{align-items:flex-start;gap:16px;}
     .hero-lockup{grid-template-columns:1fr;gap:10px;}
     .hero-mark{width:96px;height:96px;}
     .metrics{grid-template-columns:1fr;gap:16px;}
     .metric{display:grid;grid-template-columns:54px 1fr;column-gap:12px;align-items:baseline;}
     .metric .val{grid-row:1 / 3;margin:0;font-size:28px;}
     .metric .lab{margin:0;}
-    .reading-path ol{grid-template-columns:1fr 1fr;gap:12px;}
     .example-frame{height:340px;}
     .frame-meta{display:block;}
     .frame-meta a{margin-top:4px;}
+    .output-head{display:block;}
+    .output-head span{display:block;margin-top:3px;text-align:left;}
     .table-scroll{margin-right:-16px;padding-right:16px;}
   }
   @media (prefers-reduced-motion:reduce){
@@ -247,8 +241,7 @@
   <div class="reading-guide-inner">
     <a class="wordmark" href="#top" aria-label="OneShotTober, back to top">OneShotTober</a>
     <ol class="section-nav">
-      <li><a href="#beliefs">Beliefs</a></li>
-      <li><a href="#rules">Rules</a></li>
+      <li><a href="#rules">How it works</a></li>
       <li><a href="#example">Example</a></li>
       <li><a href="#prompts">31 prompts</a></li>
       <li><a href="#pitfalls">Honesty</a></li>
@@ -260,10 +253,6 @@
 <div class="wrap">
 
   <header>
-  <div class="head">
-    <time id="date"></time>
-  </div>
-
   <div class="hero-lockup">
     <img class="hero-mark" src="assets/oneshottober-mark.png" width="512" height="512" alt="">
     <h1 class="headline" id="top" tabindex="-1">OneShotTober<br>One prompt, one shot, shown out loud</h1>
@@ -279,43 +268,19 @@
     <div class="metric"><div class="val">Any</div><div class="lab">Medium</div><div class="note">site, image, essay, API, business</div></div>
   </div>
 
-  <aside class="reading-path" aria-labelledby="reading-path-title">
-    <h2 id="reading-path-title">A guided way through</h2>
-    <p>New here? Follow the four essential stops. Short on time: read the rules and example.</p>
-    <ol>
-      <li><a href="#beliefs"><span class="path-title">Start with why</span><span class="path-time">1 min</span></a></li>
-      <li><a href="#rules"><span class="path-title">Learn the rules</span><span class="path-time">1 min</span></a></li>
-      <li><a href="#example"><span class="path-title">See one entry</span><span class="path-time">1 min</span></a></li>
-      <li><a href="#prompts"><span class="path-title">Pick a prompt</span><span class="path-time">Browse</span></a></li>
-    </ol>
-  </aside>
-
   <hr class="rule">
   </header>
 
   <main id="main-content" tabindex="-1">
 
-  <section id="beliefs" data-nav-label="What we believe" aria-labelledby="beliefs-heading">
-    <h2 class="sec-head" id="beliefs-heading">I. What we believe</h2>
-
-    <div class="item">
-      <div><h3 class="item-title">1. Show the prompt</h3></div>
-      <div class="item-body"><p>The prompt shows the idea before the output polished it. Put it where people can read it.</p></div>
-    </div>
-
-    <div class="item">
-      <div><h3 class="item-title">2. Keep the first result</h3></div>
-      <div class="item-body"><p>Think before you send. After you send, keep what comes back. No reroll.</p></div>
-    </div>
-
-    <div class="item">
-      <div><h3 class="item-title">3. Share the difference</h3></div>
-      <div class="item-body"><p>Post the ask and the output together. If they do not match, say what changed. That is often the useful part.</p></div>
-    </div>
-  </section>
-
-  <section id="rules" data-nav-label="The rules" aria-labelledby="rules-heading">
-    <h2 class="sec-head" id="rules-heading">II. The rules</h2>
+  <section id="rules" data-nav-label="How it works" aria-labelledby="rules-heading">
+    <h2 class="sec-head" id="rules-heading">I. How it works</h2>
+    <ol class="steps">
+      <li><strong>Pick a meta-prompt</strong><span>Use the day's word or phrase as your starting point.</span></li>
+      <li><strong>Run one prompt</strong><span>Write it carefully, send it once, and keep the first result.</span></li>
+      <li><strong>Post both</strong><span>Share the exact prompt with the output. Add a short note if useful.</span></li>
+    </ol>
+    <h3 class="subsection-head">Rules</h3>
 
     <div class="item">
       <div><h3 class="item-title">1. Write once. Run once.</h3><span class="badge">Core</span></div>
@@ -363,7 +328,7 @@
   </section>
 
   <section id="example" data-nav-label="What an entry looks like" aria-labelledby="example-heading">
-    <h2 class="sec-head" id="example-heading">III. What an entry looks like</h2>
+    <h2 class="sec-head" id="example-heading">II. What an entry looks like</h2>
     <div class="example-story">
       <div class="example-intro">
       <div>
@@ -383,11 +348,8 @@
           <div class="entry-label">Prompt</div>
           <div class="entry-value">make me a quiet black and cream animation where simple geometric shapes keep finding their opposites and fitting together for a moment before they come apart and start over and make it feel calm and alive without adding words controls or anything flashy</div>
         </div>
-        <div class="entry-field">
-          <div class="entry-label">Output</div>
-          <div class="entry-value"><em>Attach the artifact to the post. If it is interactive, share the live link in the first comment or reply.</em></div>
-        </div>
       </div>
+      <div class="output-head"><strong>Output</strong><span>Attach the artifact. Put an interactive link in the first reply.</span></div>
       <iframe class="example-frame" src="example.html" title="One-shot output: generative geometric forms meeting and dissolving" loading="lazy" sandbox="allow-scripts"></iframe>
       <div class="frame-meta">
         <span>HTML canvas and JavaScript. Motion pauses when reduced motion is enabled.</span>
@@ -401,7 +363,7 @@
   </section>
 
   <section id="prompts" data-nav-label="31 meta-prompts" aria-labelledby="prompts-heading">
-    <h2 class="sec-head" id="prompts-heading">IV. 31 meta-prompts</h2>
+    <h2 class="sec-head" id="prompts-heading">III. 31 meta-prompts</h2>
     <div class="item">
       <div>
         <h3 class="item-title">A phrase, then your interpretation</h3>
@@ -485,7 +447,7 @@
   </section>
 
   <section id="pitfalls" data-nav-label="Keep it honest" aria-labelledby="pitfalls-heading">
-    <h2 class="sec-head" id="pitfalls-heading">V. Keep it honest</h2>
+    <h2 class="sec-head" id="pitfalls-heading">IV. Keep it honest</h2>
 
     <div class="item">
       <div><h3 class="item-title">1. Do not reroll</h3></div>
@@ -504,7 +466,7 @@
   </section>
 
   <section id="spread" data-nav-label="Join in" aria-labelledby="spread-heading">
-    <h2 class="sec-head" id="spread-heading">VI. Join in</h2>
+    <h2 class="sec-head" id="spread-heading">V. Join in</h2>
 
     <div class="item">
       <div><h3 class="item-title">1. Post the full entry</h3></div>
@@ -538,18 +500,11 @@
 <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top">Top</button>
 
 <script>
-  const date = new Date();
-  const dateElement = document.getElementById('date');
   const progressElement = document.getElementById('reading-progress');
   const backToTopButton = document.getElementById('back-to-top');
   const sectionNav = document.querySelector('.section-nav');
   const sections = [...document.querySelectorAll('main section[id]')];
   const navLinks = [...document.querySelectorAll('.section-nav a')];
-
-  dateElement.dateTime = date.toISOString().slice(0,10);
-  dateElement.textContent = date.toLocaleDateString('en-US',{
-    year:'numeric',month:'long',day:'numeric'
-  });
 
   let currentActiveId;
   const updateScrollUI = () => {
