@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OneShotTober — One prompt, one shot, shown out loud</title>
+<meta name="description" content="OneShotTober: one unedited prompt a day for the month of October, fired once, shown next to whatever it gave back. Share the intent, not just the output.">
+<link rel="canonical" href="https://oneshottober.vercel.app/">
+<meta property="og:title" content="OneShotTober">
+<meta property="og:description" content="One prompt, one shot, shown out loud. 31 days of showing the ask, not just the answer.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://oneshottober.vercel.app/">
+<style>
+  :root{
+    --paper:#f4efe3;
+    --ink:#23211c;
+    --muted:#726c5c;
+    --rule:#d9d1bf;
+    --rule-strong:#b9af98;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-padding-top:104px;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--sans);font-size:17px;line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  .skip-link{position:fixed;top:8px;left:8px;z-index:1000;padding:10px 14px;
+    background:var(--ink);color:var(--paper);font-weight:600;
+    transform:translateY(-150%);transition:transform .15s ease;}
+  .skip-link:focus{transform:translateY(0);}
+  .reading-progress{position:fixed;inset:0 0 auto;height:4px;z-index:900;
+    background:var(--rule);}
+  .reading-progress span{display:block;width:0;height:100%;background:var(--ink);
+    transform-origin:left center;}
+  .reading-guide{position:sticky;top:4px;z-index:800;background:rgba(244,239,227,.96);
+    border-bottom:1px solid var(--rule);backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);}
+  .reading-guide-inner{max-width:1120px;margin:0 auto;padding:0 24px;
+    min-height:58px;display:flex;align-items:center;gap:24px;}
+  .now-reading{min-width:190px;font-size:12px;line-height:1.25;color:var(--muted);}
+  .now-reading span{display:block;text-transform:uppercase;letter-spacing:.12em;}
+  .now-reading a{display:block;margin-top:3px;color:var(--ink);font-size:14px;
+    font-weight:600;text-decoration:none;}
+  .section-nav{display:flex;align-items:center;gap:4px;margin:0;padding:0;list-style:none;
+    overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:none;}
+  .section-nav::-webkit-scrollbar{display:none;}
+  .section-nav a{display:flex;align-items:center;min-height:44px;padding:0 10px;
+    border-radius:3px;color:var(--muted);font-size:12px;white-space:nowrap;
+    text-decoration:none;}
+  .section-nav a:hover{text-decoration:underline;text-underline-offset:3px;}
+  .section-nav a[aria-current="location"]{background:rgba(35,33,28,.08);
+    color:var(--ink);font-weight:600;}
+  .wrap{max-width:800px;margin:0 auto;padding:60px 32px 96px;}
+  a{color:inherit;text-decoration-thickness:.08em;text-underline-offset:.18em;}
+  a:focus-visible,button:focus-visible,[tabindex="0"]:focus-visible{
+    outline:3px solid var(--ink);outline-offset:3px;}
+  strong{font-weight:600;}
+  em{font-style:italic;}
+  .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+
+  .head{display:flex;justify-content:space-between;align-items:center;
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+  .head .left{display:flex;align-items:center;}
+  .head svg{width:15px;height:15px;margin-right:9px;vertical-align:middle;}
+
+  h1.headline{font-family:var(--serif);font-weight:600;
+    font-size:clamp(34px,6vw,52px);line-height:1.06;letter-spacing:-.01em;
+    margin:30px 0 26px;}
+
+  .intro{font-size:19px;line-height:1.6;margin-bottom:34px;}
+  .intro strong{font-weight:600;}
+
+  .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+    border-top:2px solid var(--ink);padding-top:22px;margin-bottom:8px;}
+  .metric .val{font-family:var(--serif);font-size:38px;line-height:1;margin-bottom:8px;}
+  .metric .lab{font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px;}
+  .metric .note{font-size:13px;color:var(--muted);line-height:1.4;}
+
+  .reading-path{margin:38px 0 8px;padding:22px;border:1px solid var(--rule-strong);
+    background:rgba(255,255,255,.18);}
+  .reading-path h2{margin:0 0 5px;font-family:var(--serif);font-size:22px;line-height:1.25;}
+  .reading-path>p{margin:0;color:var(--muted);font-size:14px;}
+  .reading-path ol{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+    margin:20px 0 0;padding:0;list-style:none;counter-reset:path;}
+  .reading-path li{counter-increment:path;}
+  .reading-path a{display:block;height:100%;padding-top:10px;border-top:1px solid var(--rule);
+    text-decoration:none;}
+  .reading-path a::before{content:counter(path,decimal-leading-zero);display:block;
+    margin-bottom:5px;color:var(--muted);font-size:11px;letter-spacing:.12em;}
+  .reading-path a:hover .path-title{text-decoration:underline;text-underline-offset:3px;}
+  .path-title{display:block;font-size:14px;font-weight:600;line-height:1.3;}
+  .path-time{display:block;margin-top:3px;color:var(--muted);font-size:12px;}
+
+  hr.rule{border:none;border-top:1px solid var(--rule-strong);margin:44px 0;}
+
+  main:focus{outline:none;}
+  section{margin-bottom:52px;scroll-margin-top:104px;}
+  .sec-head{font-size:13px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+    padding-bottom:12px;border-bottom:1px solid var(--rule);margin-bottom:28px;}
+
+  .item{display:grid;grid-template-columns:0.34fr 0.66fr;gap:28px;
+    padding:22px 0;border-bottom:1px solid var(--rule);}
+  .item:last-child{border-bottom:none;}
+  .item-title{font-size:17px;font-weight:600;margin:0 0 8px;line-height:1.3;}
+  .item-lead{font-size:14px;color:var(--muted);line-height:1.5;}
+  .badge{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);border:1px solid var(--rule-strong);border-radius:2px;
+    padding:2px 7px;margin-top:8px;}
+  .item-body p{margin:0 0 12px;}
+  .item-body p:last-child{margin-bottom:0;}
+  .item-body ul{margin:10px 0 0;padding-left:20px;}
+  .item-body li{margin-bottom:7px;}
+
+  .quote-break{margin:48px 0;text-align:center;}
+  .quote-break hr{border:none;border-top:1px solid var(--rule-strong);margin:0;}
+  .quote-break blockquote{margin:0;padding:34px 8px;}
+  .quote-break blockquote p{font-family:var(--serif);font-size:24px;line-height:1.4;margin:0;}
+  .quote-break cite{display:block;margin-top:16px;font-style:normal;
+    font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+
+  blockquote.inline{margin:0 0 12px;padding:14px 18px;border-left:2px solid var(--rule-strong);
+    background:rgba(0,0,0,.02);font-family:var(--serif);font-size:17px;line-height:1.5;}
+  blockquote.inline p{margin:0;}
+
+  .phase{font-size:13px;letter-spacing:.06em;font-weight:600;margin:26px 0 10px;}
+  .phase:first-child{margin-top:0;}
+  .table-scroll{max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain;
+    -webkit-overflow-scrolling:touch;}
+  .table-hint{display:none;margin:0 0 8px;color:var(--muted);font-size:12px;}
+  table{width:100%;border-collapse:collapse;margin-bottom:6px;font-size:15px;}
+  thead th{text-align:left;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);font-weight:600;padding:0 10px 8px 0;border-bottom:1px solid var(--rule-strong);}
+  tbody td{padding:9px 10px 9px 0;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.4;}
+  tbody tr:last-child td{border-bottom:none;}
+  td:first-child,th:first-child{width:34px;color:var(--muted);}
+  td:last-child,th:last-child{width:34%;color:var(--muted);}
+
+  footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
+    font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+  .back-to-top{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));
+    z-index:700;min-width:48px;min-height:48px;padding:0 14px;border:1px solid var(--ink);
+    border-radius:999px;background:var(--paper);color:var(--ink);font:600 12px var(--sans);
+    box-shadow:0 4px 18px rgba(35,33,28,.14);cursor:pointer;
+    opacity:0;visibility:hidden;pointer-events:none;transform:translateY(8px);
+    transition:opacity .15s ease,transform .15s ease,visibility 0s linear .15s;}
+  .back-to-top.is-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0);
+    transition-delay:0s;}
+
+  @media (max-width:640px){
+    html{scroll-padding-top:96px;}
+    .reading-guide-inner{display:block;min-height:auto;padding:8px 0 0;}
+    .now-reading{min-width:0;padding:0 20px 7px;}
+    .now-reading span{display:inline;margin-right:6px;}
+    .now-reading a{display:inline;}
+    .section-nav{padding:0 10px 4px;}
+    .wrap{padding:36px 20px 84px;}
+    .item{grid-template-columns:1fr;gap:10px;padding:20px 0;}
+    .metrics{gap:14px;}
+    .metric .val{font-size:30px;}
+    .reading-path{padding:18px;}
+    .reading-path ol{grid-template-columns:repeat(2,1fr);}
+    section{scroll-margin-top:96px;}
+    .table-hint{display:block;}
+    .table-scroll{margin-right:-20px;padding-right:20px;}
+    table{min-width:540px;}
+    td:last-child,th:last-child{width:32%;}
+    .quote-break blockquote p{font-size:20px;}
+    footer{padding-right:56px;}
+  }
+  @media (max-width:420px){
+    body{font-size:16px;}
+    .wrap{padding-inline:16px;}
+    .head{align-items:flex-start;gap:16px;}
+    .metrics{grid-template-columns:1fr;gap:16px;}
+    .metric{display:grid;grid-template-columns:54px 1fr;column-gap:12px;align-items:baseline;}
+    .metric .val{grid-row:1 / 3;margin:0;font-size:28px;}
+    .metric .lab{margin:0;}
+    .reading-path ol{grid-template-columns:1fr 1fr;gap:12px;}
+    .table-scroll{margin-right:-16px;padding-right:16px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;
+      animation-duration:.01ms!important;animation-iteration-count:1!important;}
+  }
+  @media (prefers-contrast:more){
+    :root{--muted:#4d493f;--rule:#9c927d;--rule-strong:#6f6758;}
+    .reading-guide{background:var(--paper);}
+  }
+  @media (forced-colors:active){
+    .reading-progress span{background:CanvasText;}
+    .section-nav a[aria-current="location"]{outline:2px solid CanvasText;}
+  }
+  @media print{
+    .skip-link,.reading-progress,.reading-guide,.back-to-top{display:none;}
+    .wrap{max-width:none;padding:0;}
+    a{text-decoration:none;}
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to manifesto</a>
+<div class="reading-progress" aria-hidden="true"><span id="reading-progress"></span></div>
+
+<nav class="reading-guide" aria-label="Manifesto sections">
+  <div class="reading-guide-inner">
+    <div class="now-reading">
+      <span>Now reading</span>
+      <a id="current-section" href="#beliefs">Start here</a>
+    </div>
+    <ol class="section-nav">
+      <li><a href="#beliefs">Beliefs</a></li>
+      <li><a href="#rules">Rules</a></li>
+      <li><a href="#example">Example</a></li>
+      <li><a href="#prompts">31 prompts</a></li>
+      <li><a href="#pitfalls">Pitfalls</a></li>
+      <li><a href="#spread">Join in</a></li>
+    </ol>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header>
+  <div class="head">
+    <span class="left">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><line x1="12" y1="1.5" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22.5" y2="12"/></svg>
+      Manifesto
+    </span>
+    <time id="date"></time>
+  </div>
+
+  <h1 class="headline" id="top" tabindex="-1">OneShotTober<br>One prompt, one shot, shown out loud</h1>
+
+  <div class="intro">
+    <p><strong>Share the intent, not just the output.</strong> One unedited prompt a day, fired once, shown next to whatever it gave back. The AI bubble usually shows you the polished result and hides the reaching. This does the opposite: it puts the raw run-on sentence on the table, typos and nerve and all, so people can see what you actually wanted and where the model met you or missed you. The gap between what you meant and what you got is the point. Taking cues from the daily-challenge tradition, this is 31 meta-prompts, one a day, each one inviting the unfiltered creative in you out into the open. Tag them <strong>#oneshottober</strong> and <strong>#oneshotchallenge</strong>, and tag <strong>@oneshottober</strong>.</p>
+  </div>
+
+  <div class="metrics">
+    <div class="metric"><div class="val">31</div><div class="lab">Meta-prompts</div><div class="note">Oct 1&ndash;31, join for any number</div></div>
+    <div class="metric"><div class="val">1</div><div class="lab">Shot</div><div class="note">one prompt, raw or agent-run</div></div>
+    <div class="metric"><div class="val">Any</div><div class="lab">Medium</div><div class="note">site, image, essay, API, business</div></div>
+  </div>
+
+  <aside class="reading-path" aria-labelledby="reading-path-title">
+    <h2 id="reading-path-title">A guided way through</h2>
+    <p>New here? Follow the four essential stops. Short on time: read the rules and example.</p>
+    <ol>
+      <li><a href="#beliefs"><span class="path-title">Start with why</span><span class="path-time">2 min</span></a></li>
+      <li><a href="#rules"><span class="path-title">Learn the rules</span><span class="path-time">3 min</span></a></li>
+      <li><a href="#example"><span class="path-title">See one entry</span><span class="path-time">2 min</span></a></li>
+      <li><a href="#prompts"><span class="path-title">Pick a prompt</span><span class="path-time">Browse</span></a></li>
+    </ol>
+  </aside>
+
+  <hr class="rule">
+  </header>
+
+  <main id="main-content" tabindex="-1">
+
+  <div class="quote-break">
+    <hr>
+    <blockquote>
+      <p>The things we make are just the output. The real creativity is the idea that allows the thing to be made.</p>
+      <cite>Rick Rubin</cite>
+    </blockquote>
+    <hr>
+  </div>
+
+  <section id="beliefs" data-nav-label="What we believe" aria-labelledby="beliefs-heading">
+    <h2 class="sec-head" id="beliefs-heading">I. What we believe</h2>
+
+    <div class="item">
+      <div><h3 class="item-title">1. The prompt is the confession</h3></div>
+      <div class="item-body"><p><strong>The output is what you made. The prompt is who you were the moment you reached for it.</strong> If the idea is the real creative act, the prompt, not the picture, is the work, and hiding it behind a clean result hides the only honest part. So show the sentence. Let it be unguarded. The reaching is the thing worth seeing.</p></div>
+    </div>
+
+    <div class="item">
+      <div><h3 class="item-title">2. One shot removes the mask</h3></div>
+      <div class="item-body"><p>No re-rolls, no polishing yourself into someone smarter than you were when you started typing. You send the first real reach, fingerprints and surprises intact. The unedited version is more alive than the buffed one, and everyone can feel the difference.</p></div>
+    </div>
+
+    <div class="item">
+      <div><h3 class="item-title">3. The gap is where you're most exposed</h3></div>
+      <div class="item-body"><p>Every entry lays two things side by side: what you asked for and what came back. The space between them is where you're most exposed and most interesting, where the model surprised you, misread you, or went somewhere you never meant to go. Don't smooth it over. What you post is that gap, not just the result.</p></div>
+    </div>
+  </section>
+
+  <div class="quote-break">
+    <hr>
+    <blockquote>
+      <p>Showing what you made is easy. Showing the raw sentence you asked it with is the honest part, and it's what this challenge is for.</p>
+    </blockquote>
+    <hr>
+  </div>
+
+  <section id="rules" data-nav-label="The rules" aria-labelledby="rules-heading">
+    <h2 class="sec-head" id="rules-heading">II. The rules</h2>
+
+    <div class="item">
+      <div><h3 class="item-title">1. One shot</h3><span class="badge">Core</span></div>
+      <div class="item-body"><p><strong>Write it once, fire it once, post what comes back.</strong> Take your time composing the ask; the rule is one submission, not spontaneous wording. Once you send it, that's the shot: no follow-ups, no re-rolls, no edits after seeing the result. An agent running autonomously from that one prompt is fine; sending it corrections across turns is not. If the tool asks a question or returns a batch, that counts as your shot, so post what you get instead of regenerating.</p></div>
+    </div>
+
+    <div class="item">
+      <div><h3 class="item-title">2. Your own direction</h3><span class="badge">Core</span></div>
+      <div class="item-body"><p><strong>Describe what you want and what matters about it.</strong> Naming what you want is fine; that's direction. What's off-limits is substituting an existing work, brand, or artist for your own direction ("make it look like [artist]," "the X of Y"). Every entry is <em>zero-shot</em>: no examples, no reference handed over, the ask carries everything. The test: could someone read only your prompt and tell it was written with a point of view?</p></div>
+    </div>
+
+    <div class="item">
+      <div><h3 class="item-title">3. Show the prompt, verbatim</h3></div>
+      <div class="item-body"><p>Post the prompt and the raw output together, typos and hedges and all. Don't tidy it after the fact. Never post sensitive or harmful content; if you'd rather withhold a result, skipping it is fine and still counts. Optional but encouraged: an after-note that doesn't change the shot, "I meant ___. It gave me ___." It surfaces the gap and gives people a way in.</p></div>
+    </div>
+
+    <div class="item">
+      <div><h3 class="item-title">4. Any medium, join in</h3></div>
+      <div class="item-body"><p>Image, paragraph, song, chart, recipe, code, lesson plan: your choice, or rotate. Keep it to stills, text, or audio, no video, which keeps the cost light too. It's 31 meta-prompts, not a streak, so join for as many as you like. Tag <strong>#oneshottober</strong> and <strong>#oneshotchallenge</strong> so the run reads as one thing.</p></div>
+    </div>
+  </section>
+
+  <section id="example" data-nav-label="What an entry looks like" aria-labelledby="example-heading">
+    <h2 class="sec-head" id="example-heading">III. What an entry looks like</h2>
+    <div class="item">
+      <div>
+        <h3 class="item-title">An example</h3>
+        <div class="item-lead">Show the interesting misses, not only the clean wins. This one takes the Day 1 meta-prompt, one run-on sentence, and asks for a whole website.</div>
+      </div>
+      <div class="item-body">
+        <p><strong>Prompt, verbatim:</strong> build me a one page portfolio site for a self taught furniture maker who works in reclaimed oak that should feel like a quiet workshop at dawn not a startup so warm off-white lots of empty space big photos of the work only a few words and a contact link at the bottom that doesn't shout</p>
+        <blockquote class="inline"><p>What came back: a single scrolling page. An oversized hero photo, the maker's name set small in a serif, three furniture shots with one-line captions, and a plain email link in the footer. Clean, warmish, no navigation.</p></blockquote>
+        <p><strong>After-note.</strong> I meant a quiet workshop at dawn. It gave me quiet, but corporate-quiet: the off-white read as minimal-tech instead of warm wood, and the word "portfolio" dragged it toward a template. The drift from warm to corporate is what makes it worth posting. Next shot, I'd cut "portfolio" entirely.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="prompts" data-nav-label="31 meta-prompts" aria-labelledby="prompts-heading">
+    <h2 class="sec-head" id="prompts-heading">IV. 31 meta-prompts</h2>
+    <div class="item">
+      <div>
+        <h3 class="item-title">Meta-prompts, not assignments</h3>
+        <div class="item-lead">Each day limits how you ask, not what you make, so it works in any medium. These are meta-prompts, not tests. The rules are the spine; skip, reorder, or bring your own. Four phases move from noticing your words to reflecting on the month.</div>
+      </div>
+      <div class="item-body">
+        <div class="phase">Phase 1 &middot; Notice your language</div>
+        <p class="table-hint" aria-hidden="true">Swipe sideways to see all columns.</p>
+        <div class="table-scroll" role="region" aria-label="Phase 1 prompts" tabindex="0">
+        <table>
+          <caption class="visually-hidden">Days 1 through 7: Notice your language</caption>
+          <thead><tr><th scope="col">Day</th><th scope="col">Meta-prompt</th><th scope="col">What you're exploring</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Say the whole thing in one breath. One sentence, no lists.</td><td>Economy</td></tr>
+            <tr><td>2</td><td>One word. Then watch how much the model invents for you.</td><td>Defaults</td></tr>
+            <tr><td>3</td><td>Get what you want without ever naming it.</td><td>Describing, not pointing</td></tr>
+            <tr><td>4</td><td>Say only what to keep out.</td><td>Definition by absence</td></tr>
+            <tr><td>5</td><td>Dead-literal. Concrete words only, no metaphor.</td><td>Precision</td></tr>
+            <tr><td>6</td><td>All metaphor. Describe it as something else and don't explain.</td><td>Suggestion</td></tr>
+            <tr><td>7</td><td>Plain human words. No jargon, no prompt-craft tricks.</td><td>Plain speech</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="phase">Phase 2 &middot; Change your perspective</div>
+        <p class="table-hint" aria-hidden="true">Swipe sideways to see all columns.</p>
+        <div class="table-scroll" role="region" aria-label="Phase 2 prompts" tabindex="0">
+        <table>
+          <caption class="visually-hidden">Days 8 through 16: Change your perspective</caption>
+          <thead><tr><th scope="col">Day</th><th scope="col">Meta-prompt</th><th scope="col">What you're exploring</th></tr></thead>
+          <tbody>
+            <tr><td>8</td><td>Explain it to a total stranger.</td><td>Clarity</td></tr>
+            <tr><td>9</td><td>Say it to someone who already knows you.</td><td>Shorthand</td></tr>
+            <tr><td>10</td><td>Ask for a feeling and let the thing follow.</td><td>Intent over object</td></tr>
+            <tr><td>11</td><td>Nail the mood, leave the subject wide open.</td><td>Voice</td></tr>
+            <tr><td>12</td><td>Take something tiny and make it monumental.</td><td>Scale</td></tr>
+            <tr><td>13</td><td>Take something huge and make it intimate.</td><td>Proportion</td></tr>
+            <tr><td>14</td><td>Smash two unrelated worlds together.</td><td>Range</td></tr>
+            <tr><td>15</td><td>Steal a structure from another medium (a recipe as a portrait).</td><td>Form</td></tr>
+            <tr><td>16</td><td>Pull it from real life: a memory, a place, a sound.</td><td>Specificity</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="phase">Phase 3 &middot; Make deliberate choices</div>
+        <p class="table-hint" aria-hidden="true">Swipe sideways to see all columns.</p>
+        <div class="table-scroll" role="region" aria-label="Phase 3 prompts" tabindex="0">
+        <table>
+          <caption class="visually-hidden">Days 17 through 24: Make deliberate choices</caption>
+          <thead><tr><th scope="col">Day</th><th scope="col">Meta-prompt</th><th scope="col">What you're exploring</th></tr></thead>
+          <tbody>
+            <tr><td>17</td><td>Pick one rule that must survive to the end. Free the rest.</td><td>Leverage</td></tr>
+            <tr><td>18</td><td>Give it almost nothing: a tiny budget of words, seconds, or parts.</td><td>Discipline</td></tr>
+            <tr><td>19</td><td>Hand it a rule, withhold the subject.</td><td>Trust</td></tr>
+            <tr><td>20</td><td>Hand it a subject, withhold the rule.</td><td>Openness</td></tr>
+            <tr><td>21</td><td>Decide two things. Hand the third, on purpose, to the model.</td><td>Delegation</td></tr>
+            <tr><td>22</td><td>Demand two things that can't both be true.</td><td>Contradiction</td></tr>
+            <tr><td>23</td><td>Name a default you hate (glossy, cheerful, symmetrical) and ask for its opposite.</td><td>Taste</td></tr>
+            <tr><td>24</td><td>Ask for the thing you want but have no idea how to get.</td><td>Reach</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="phase">Phase 4 &middot; Reflect</div>
+        <p class="table-hint" aria-hidden="true">Swipe sideways to see all columns.</p>
+        <div class="table-scroll" role="region" aria-label="Phase 4 prompts" tabindex="0">
+        <table>
+          <caption class="visually-hidden">Days 25 through 31: Reflect</caption>
+          <thead><tr><th scope="col">Day</th><th scope="col">Meta-prompt</th><th scope="col">What you're exploring</th></tr></thead>
+          <tbody>
+            <tr><td>25</td><td>Ask for what you actually want, impressive or not.</td><td>Candor</td></tr>
+            <tr><td>26</td><td>Show an unfashionable taste or a small obsession. Nothing private required.</td><td>Nerve</td></tr>
+            <tr><td>27</td><td>Credit an influence and the one thing it taught you. No copying its style.</td><td>Credit</td></tr>
+            <tr><td>28</td><td>The prompt nobody but you would write.</td><td>Signature</td></tr>
+            <tr><td>29</td><td>Prompt the tool about prompting.</td><td>Reflection</td></tr>
+            <tr><td>30</td><td>Re-shoot day 1 from scratch. Post both. Say what changed.</td><td>Growth</td></tr>
+            <tr><td>31</td><td>Take the constraint that taught you most and fire one last shot.</td><td>Culmination</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pitfalls" data-nav-label="Where this could go wrong" aria-labelledby="pitfalls-heading">
+    <h2 class="sec-head" id="pitfalls-heading">V. Where this could go wrong</h2>
+
+    <div class="item">
+      <div><h3 class="item-title">1. The honesty is unenforceable</h3></div>
+      <div class="item-body"><p>Two ways people quietly break it. The obvious one: generate fifty times, pick the winner, post it as one shot. The subtler and more common one: send the prompt, then coax the agent across several follow-up turns until it lands, and call the whole conversation a single ask. The second feels innocent, so it's the one that slips through most often. The rules only mean something if people hold themselves to them. It self-selects for people who want the practice rather than the applause, and over a month the honest posts become easy to recognize.</p></div>
+    </div>
+
+    <div class="item">
+      <div><h3 class="item-title">2. It slides back into an output contest</h3></div>
+      <div class="item-body"><p>The fastest way this dies: everyone posts only their best result and buries the misses, and the audience starts praising the prettiest output instead of the sharpest ask. Both put the focus back on the output, which is the one thing this was built to move away from. Fight it by showing the misses too, and by asking about the ask in the replies: which phrase shaped the result? what did the model assume? where did the intention survive or get lost? Resist ranking whose prompt is "best."</p></div>
+    </div>
+
+    <div class="item">
+      <div><h3 class="item-title">3. One shot can reward playing it safe</h3></div>
+      <div class="item-body"><p>Because you can't iterate, there's a pull toward the reliable, model-pleasing prompt that's sure to land something decent. That's the opposite of the point. Reach past what you know will work. A bold prompt that misses makes a more honest post than a safe one that lands.</p></div>
+    </div>
+
+    <div class="item">
+      <div><h3 class="item-title">4. "Democratizing creativity" is a trap phrase</h3></div>
+      <div class="item-body"><p>It's tempting to sell this as "anyone can make art now." Resist that. It's the exact line used to launder training-data extraction, and it claims far more than one raw prompt earns. This trains a different skill, direction. It doesn't replace making or rank above it. Credit your influences; never impersonate a living artist to pass their look off as your eye.</p></div>
+    </div>
+  </section>
+
+  <section id="spread" data-nav-label="Spread the word" aria-labelledby="spread-heading">
+    <h2 class="sec-head" id="spread-heading">VI. Spread the word</h2>
+
+    <div class="item">
+      <div><h3 class="item-title">1. Follow and tag @oneshottober</h3></div>
+      <div class="item-body"><p>There's one hub: <strong>@oneshottober</strong>. Tag it on every entry so it can repost you, and follow it to watch the whole run in one place. The account is the campfire; the tags are how everyone finds it.</p></div>
+    </div>
+
+    <div class="item">
+      <div><h3 class="item-title">2. Both tags, every post</h3></div>
+      <div class="item-body"><p><strong>#oneshottober</strong> and <strong>#oneshotchallenge</strong> on everything, no exceptions. The first marks the run; the second catches the wider search. Put them in the post itself, not a reply, so they actually get indexed.</p></div>
+    </div>
+
+    <div class="item">
+      <div><h3 class="item-title">3. X is home base</h3></div>
+      <div class="item-body"><p>Post the prompt and the raw output in the same post, where they sit side by side. Add the "I meant / it gave me" note as a reply if you like. Cross-post anywhere you want, but the tag lives on X, so that's where the run stays browsable.</p></div>
+    </div>
+
+    <div class="item">
+      <div><h3 class="item-title">4. Amplify, don't rank</h3></div>
+      <div class="item-body"><p>Repost others in the tag every day. When you reply, ask about the ask: which phrase shaped the result, what the model assumed, where the intention survived. Never rank whose prompt is "best." Reposting others keeps the tag alive. The moment it turns into a contest, people stop showing up.</p></div>
+    </div>
+
+    <div class="item">
+      <div><h3 class="item-title">5. The countdown to October 1</h3><span class="badge">Now</span></div>
+      <div class="item-body"><p>This week, seed the tag: post a few example entries so day one isn't an empty room. On <strong>October 1</strong>, everyone's first shot goes live together. Then one a day through the 31st, or as many as you can. Miss a day, pick it back up; it's meta-prompts, not a streak.</p></div>
+    </div>
+  </section>
+  </main>
+
+  <footer>
+    <span>OneShotTober</span>
+    <span><a href="https://oneshottober.vercel.app/">oneshottober.vercel.app</a> &middot; #oneshottober &middot; #oneshotchallenge</span>
+  </footer>
+
+</div>
+
+<button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top">Top</button>
+
+<script>
+  const date = new Date();
+  const dateElement = document.getElementById('date');
+  const progressElement = document.getElementById('reading-progress');
+  const currentSectionLink = document.getElementById('current-section');
+  const backToTopButton = document.getElementById('back-to-top');
+  const sections = [...document.querySelectorAll('main section[id]')];
+  const navLinks = [...document.querySelectorAll('.section-nav a')];
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  dateElement.dateTime = date.toISOString().slice(0,10);
+  dateElement.textContent = date.toLocaleDateString('en-US',{
+    year:'numeric',month:'long',day:'numeric'
+  });
+
+  let currentActiveId;
+  const updateScrollUI = () => {
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollable > 0 ? Math.min(window.scrollY / scrollable, 1) : 0;
+    progressElement.style.width = `${progress * 100}%`;
+    backToTopButton.classList.toggle('is-visible', window.scrollY > window.innerHeight * .75);
+
+    const marker = Math.min(window.innerHeight * .3, 220);
+    let activeSection = sections[0];
+    for(const section of sections){
+      if(section.getBoundingClientRect().top <= marker) activeSection = section;
+    }
+    if(!activeSection) return;
+
+    const activeId = activeSection.id;
+    if(activeId === currentActiveId) return;
+    currentActiveId = activeId;
+    const activeLabel = activeSection.dataset.navLabel;
+    currentSectionLink.href = `#${activeId}`;
+    currentSectionLink.textContent = activeLabel;
+    navLinks.forEach(link => {
+      if(link.getAttribute('href') === `#${activeId}`){
+        link.setAttribute('aria-current','location');
+        link.scrollIntoView({behavior:'auto',block:'nearest',inline:'nearest'});
+      }else{
+        link.removeAttribute('aria-current');
+      }
+    });
+  };
+
+  let scrollFrame;
+  window.addEventListener('scroll',() => {
+    if(scrollFrame) return;
+    scrollFrame = requestAnimationFrame(() => {
+      updateScrollUI();
+      scrollFrame = null;
+    });
+  },{passive:true});
+  window.addEventListener('resize',updateScrollUI);
+
+  backToTopButton.addEventListener('click',() => {
+    const behavior = prefersReducedMotion.matches ? 'auto' : 'smooth';
+    window.scrollTo({top:0,behavior});
+    window.setTimeout(() => {
+      document.getElementById('top').focus({preventScroll:true});
+    },behavior === 'smooth' ? 350 : 0);
+  });
+
+  updateScrollUI();
+</script>
+</body>
+</html>
