@@ -127,17 +127,6 @@
   .guide strong{display:block;margin-bottom:4px;font-size:10px;letter-spacing:.12em;
     text-transform:uppercase;color:var(--muted);}
 
-  .quote-break{margin:48px 0;text-align:center;}
-  .quote-break hr{border:none;border-top:1px solid var(--rule-strong);margin:0;}
-  .quote-break blockquote{margin:0;padding:34px 8px;}
-  .quote-break blockquote p{font-family:var(--serif);font-size:24px;line-height:1.4;margin:0;}
-  .quote-break cite{display:block;margin-top:16px;font-style:normal;
-    font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
-
-  blockquote.inline{margin:0 0 12px;padding:14px 18px;border-left:2px solid var(--rule-strong);
-    background:rgba(0,0,0,.02);font-family:var(--serif);font-size:17px;line-height:1.5;}
-  blockquote.inline p{margin:0;}
-
   .example-story{padding:4px 0 28px;}
   .example-intro{display:grid;grid-template-columns:.34fr .66fr;gap:28px;margin-bottom:24px;}
   .example-intro>*{min-width:0;}
@@ -214,7 +203,6 @@
     .table-scroll{margin-right:-20px;padding-right:20px;}
     table{min-width:540px;}
     td:last-child,th:last-child{width:32%;}
-    .quote-break blockquote p{font-size:20px;}
     footer{padding-right:56px;}
   }
   @media (max-width:420px){
@@ -265,7 +253,7 @@
       <li><a href="#rules">Rules</a></li>
       <li><a href="#example">Example</a></li>
       <li><a href="#prompts">31 prompts</a></li>
-      <li><a href="#pitfalls">Pitfalls</a></li>
+      <li><a href="#pitfalls">Honesty</a></li>
       <li><a href="#spread">Join in</a></li>
     </ol>
   </div>
@@ -301,9 +289,9 @@
     <h2 id="reading-path-title">A guided way through</h2>
     <p>New here? Follow the four essential stops. Short on time: read the rules and example.</p>
     <ol>
-      <li><a href="#beliefs"><span class="path-title">Start with why</span><span class="path-time">2 min</span></a></li>
-      <li><a href="#rules"><span class="path-title">Learn the rules</span><span class="path-time">3 min</span></a></li>
-      <li><a href="#example"><span class="path-title">See one entry</span><span class="path-time">2 min</span></a></li>
+      <li><a href="#beliefs"><span class="path-title">Start with why</span><span class="path-time">1 min</span></a></li>
+      <li><a href="#rules"><span class="path-title">Learn the rules</span><span class="path-time">1 min</span></a></li>
+      <li><a href="#example"><span class="path-title">See one entry</span><span class="path-time">1 min</span></a></li>
       <li><a href="#prompts"><span class="path-title">Pick a prompt</span><span class="path-time">Browse</span></a></li>
     </ol>
   </aside>
@@ -313,40 +301,24 @@
 
   <main id="main-content" tabindex="-1">
 
-  <div class="quote-break">
-    <hr>
-    <blockquote>
-      <p>The result shows what happened. The prompt shows what you were trying to make happen.</p>
-    </blockquote>
-    <hr>
-  </div>
-
   <section id="beliefs" data-nav-label="What we believe" aria-labelledby="beliefs-heading">
     <h2 class="sec-head" id="beliefs-heading">I. What we believe</h2>
 
     <div class="item">
-      <div><h3 class="item-title">1. The prompt is the first draft of the idea</h3></div>
-      <div class="item-body"><p>You know the moment. The box is empty. You start typing before the thought is fully formed. Halfway through, you realize what you are actually asking for. <strong>That first sentence holds the decision.</strong> The output may be polished. The prompt still has fingerprints on it.</p></div>
+      <div><h3 class="item-title">1. Show the prompt</h3></div>
+      <div class="item-body"><p>The prompt shows the idea before the output polished it. Put it where people can read it.</p></div>
     </div>
 
     <div class="item">
-      <div><h3 class="item-title">2. One shot keeps the moment intact</h3></div>
-      <div class="item-body"><p>Iteration is useful. This is a different practice. One shot keeps you from sanding away the original instinct after you know the answer. You can think carefully before you send. Once you send, the moment is closed. Keep what happened.</p></div>
+      <div><h3 class="item-title">2. Keep the first result</h3></div>
+      <div class="item-body"><p>Think before you send. After you send, keep what comes back. No reroll.</p></div>
     </div>
 
     <div class="item">
-      <div><h3 class="item-title">3. The distance is the story</h3></div>
-      <div class="item-body"><p>You asked for warm and got polished. You asked for simple and got empty. You asked for a tool and got a toy. That distance is not a failure to hide. It shows which words carried the idea and which ones let it drift. Put the two sides together. Let people see the crossing.</p></div>
+      <div><h3 class="item-title">3. Share the difference</h3></div>
+      <div class="item-body"><p>Post the ask and the output together. If they do not match, say what changed. That is often the useful part.</p></div>
     </div>
   </section>
-
-  <div class="quote-break">
-    <hr>
-    <blockquote>
-      <p>Do not improve the story after you know how it ends.</p>
-    </blockquote>
-    <hr>
-  </div>
 
   <section id="rules" data-nav-label="The rules" aria-labelledby="rules-heading">
     <h2 class="sec-head" id="rules-heading">II. The rules</h2>
@@ -354,10 +326,10 @@
     <div class="item">
       <div><h3 class="item-title">1. Write once. Run once.</h3><span class="badge">Core</span></div>
       <div class="item-body">
-        <p>Take your time with the prompt. The rule is not speed. The rule is one submission. When you send it, that is the shot. No follow-up, no reroll, no quiet repair after you see the result. If an agent works on its own from that single prompt, it still counts. If it asks you a question, the question is what came back.</p>
+        <p>Send one prompt once. No follow-up, reroll, or fixes. An agent can work from that prompt on its own.</p>
         <div class="guidance">
-          <div class="guide"><strong>Try</strong>Shape one honest prompt, send it once, and keep the first response.</div>
-          <div class="guide"><strong>Avoid</strong>Run six versions, choose the strongest, and present it as the first.</div>
+          <div class="guide"><strong>Try</strong>Plan the prompt, then keep the first response.</div>
+          <div class="guide"><strong>Avoid</strong>Run several versions and choose the best one.</div>
         </div>
       </div>
     </div>
@@ -365,10 +337,10 @@
     <div class="item">
       <div><h3 class="item-title">2. Bring your own direction</h3><span class="badge">Core</span></div>
       <div class="item-body">
-        <p>Say what you want and why it matters. Use your own words instead of borrowing an artist, brand, or existing work as shorthand. Every entry is zero-shot: no sample to copy, no reference image handed over. The prompt has to carry the point of view. If we read only the ask, we should still be able to feel a person behind it.</p>
+        <p>Describe what you want in your own words. Do not provide examples or use an artist, brand, or existing work as a style shortcut.</p>
         <div class="guidance">
-          <div class="guide"><strong>Try</strong>“Make a room that feels recently abandoned but still warm.”</div>
-          <div class="guide"><strong>Avoid</strong>“Make it in the style of this living artist or familiar brand.”</div>
+          <div class="guide"><strong>Try</strong>“A room that feels abandoned but still warm.”</div>
+          <div class="guide"><strong>Avoid</strong>“Make it in the style of [artist or brand].”</div>
         </div>
       </div>
     </div>
@@ -376,10 +348,10 @@
     <div class="item">
       <div><h3 class="item-title">3. Show the prompt, verbatim</h3></div>
       <div class="item-body">
-        <p>Post the exact prompt beside the raw output. Keep the typos, the hedges, the run-on sentence. Do not tidy the evidence. Protect private or harmful material; skipping a post is always allowed. If you want, add one short note afterward: <em>I meant ___. It gave me ___.</em> The note explains the distance without changing the shot.</p>
+        <p>Copy the exact prompt and raw output. Keep the typos. Skip anything private or harmful. An after-note is optional.</p>
         <div class="guidance">
-          <div class="guide"><strong>Try</strong>Keep the awkward phrase that pulled the result somewhere unexpected.</div>
-          <div class="guide"><strong>Avoid</strong>Rewrite the prompt afterward so the result looks more intentional.</div>
+          <div class="guide"><strong>Try</strong>Post the awkward wording that changed the result.</div>
+          <div class="guide"><strong>Avoid</strong>Rewrite the prompt after seeing the output.</div>
         </div>
       </div>
     </div>
@@ -387,10 +359,10 @@
     <div class="item">
       <div><h3 class="item-title">4. Any medium. No streak required.</h3></div>
       <div class="item-body">
-        <p>Make an image, a paragraph, a song, a chart, a recipe, a site, or a small tool. Rotate if you want. Join for one day or all 31. Missing a day does not break anything. This is a collection of attempts, not a test of attendance.</p>
+        <p>Use text, image, audio, code, or anything else. Join for one day or all 31. Miss a day? Continue when you can.</p>
         <div class="guidance">
-          <div class="guide"><strong>Try</strong>Follow the idea into the medium that makes its tension easiest to feel.</div>
-          <div class="guide"><strong>Avoid</strong>Choose a medium only because it reliably produces impressive posts.</div>
+          <div class="guide"><strong>Try</strong>Use the medium that fits the idea.</div>
+          <div class="guide"><strong>Avoid</strong>Pick a medium only because it looks impressive.</div>
         </div>
       </div>
     </div>
@@ -401,11 +373,11 @@
     <div class="example-story">
       <div class="example-intro">
       <div>
-        <h3 class="item-title">How to post an entry</h3>
-        <div class="item-lead">Lead with the day and its phrase. Show the exact prompt. Attach the output, or share a live link in the first comment. The after-note is optional.</div>
+        <h3 class="item-title">Post four things</h3>
+        <div class="item-lead">Day. Prompt. Output. Optional after-note.</div>
       </div>
       <div class="item-body">
-        <p>Day 1 is intentionally open. <em>Between forms</em> could become an image, a story, a sound, a site, or something else entirely. This entry turned it into a moving geometric study.</p>
+        <p>Attach the output to the post. If it is interactive, add the live link in the first reply.</p>
       </div>
       </div>
       <div class="entry-format" aria-label="Example OneShotTober post format">
@@ -429,7 +401,7 @@
       </div>
       <div class="after-note">
         <h3>After-note <span class="visually-hidden">—</span><small>(optional)</small></h3>
-        <p>I expected a few large shapes. It made a field of small relationships instead. The center still behaves like the main event, but the quieter story happens around it: each tile arrives at the same idea at a different time. The prompt asked for opposites. The output found cycles.</p>
+        <p>I expected a few large shapes. It made a field of small ones. The output followed the cycle more than the contrast.</p>
       </div>
     </div>
   </section>
@@ -513,61 +485,51 @@
           </tbody>
         </table>
         </div>
-        <p class="source-note">The sequence quietly borrows from <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">Jakob Nielsen's usability heuristics</a>: visibility, familiar language, control, recognition, restraint, and recovery.</p>
+        <p class="source-note">Inspired by <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">Jakob Nielsen's usability heuristics</a>.</p>
       </div>
     </div>
   </section>
 
-  <section id="pitfalls" data-nav-label="Where this could go wrong" aria-labelledby="pitfalls-heading">
-    <h2 class="sec-head" id="pitfalls-heading">V. Where this could go wrong</h2>
+  <section id="pitfalls" data-nav-label="Keep it honest" aria-labelledby="pitfalls-heading">
+    <h2 class="sec-head" id="pitfalls-heading">V. Keep it honest</h2>
 
     <div class="item">
-      <div><h3 class="item-title">1. Nobody can verify the one shot</h3></div>
-      <div class="item-body"><p>You can run fifty versions, choose the best, and say it was the first. You can guide an agent through ten corrections and call the conversation one prompt. There is no referee for this. The rule survives only when the person posting wants the practice more than the appearance of getting it right.</p></div>
+      <div><h3 class="item-title">1. Do not reroll</h3></div>
+      <div class="item-body"><p>If you ran it again or corrected it in a follow-up, it is not a one-shot entry. Try again another day.</p></div>
     </div>
 
     <div class="item">
-      <div><h3 class="item-title">2. The output can take over again</h3></div>
-      <div class="item-body"><p>The prettiest result will always be easier to praise. If we only repost the clean wins, the prompt disappears and this becomes another output contest. Show the misses. In the replies, ask which phrase changed the result, what the model assumed, and where the original idea went missing.</p></div>
+      <div><h3 class="item-title">2. Share misses</h3></div>
+      <div class="item-body"><p>Do not post only the best-looking results. A clear miss can show more than a safe win.</p></div>
     </div>
 
     <div class="item">
-      <div><h3 class="item-title">3. One shot can make you cautious</h3></div>
-      <div class="item-body"><p>When there is no second try, the safe prompt starts to look smart. Resist it. Ask for the thing you do not already know how to get. A clear miss can teach you more than a predictable success.</p></div>
-    </div>
-
-    <div class="item">
-      <div><h3 class="item-title">4. Direction is not the whole craft</h3></div>
-      <div class="item-body"><p>A prompt can hold an idea. It does not replace the years inside another person's hand, ear, or eye. Credit what shaped you. Do not use a living artist's name as a shortcut to their work. This challenge practices direction. It does not claim direction is everything.</p></div>
+      <div><h3 class="item-title">3. Use your direction</h3></div>
+      <div class="item-body"><p>Credit your influences. Do not use someone else's name as a shortcut to their style.</p></div>
     </div>
   </section>
 
-  <section id="spread" data-nav-label="Spread the word" aria-labelledby="spread-heading">
-    <h2 class="sec-head" id="spread-heading">VI. Spread the word</h2>
+  <section id="spread" data-nav-label="Join in" aria-labelledby="spread-heading">
+    <h2 class="sec-head" id="spread-heading">VI. Join in</h2>
 
     <div class="item">
-      <div><h3 class="item-title">1. Put the two sides together</h3></div>
-      <div class="item-body"><p>Post the prompt and output in the same place. Do not make people hunt for the ask in a thread. If you add an after-note, put it directly below them. The whole entry should read like one small story: intention, result, distance.</p></div>
+      <div><h3 class="item-title">1. Post the full entry</h3></div>
+      <div class="item-body"><p>Put the day, prompt, and output together. Add the after-note below them if you have one.</p></div>
     </div>
 
     <div class="item">
-      <div><h3 class="item-title">2. Use the shared tags</h3></div>
-      <div class="item-body"><p>Add <strong>#oneshottober</strong> and <strong>#oneshotchallenge</strong> to the post itself. Tag <strong>@oneshottober</strong> so the account can find and share the entry. The tags are not decoration. They are how separate attempts become one visible month.</p></div>
+      <div><h3 class="item-title">2. Tag it</h3></div>
+      <div class="item-body"><p>Use <strong>#oneshottober</strong> and <strong>#oneshotchallenge</strong>. Tag <strong>@oneshottober</strong> so the entry can be found and shared.</p></div>
     </div>
 
     <div class="item">
-      <div><h3 class="item-title">3. X is the index, not the limit</h3></div>
-      <div class="item-body"><p>X is where the shared tag stays browsable. Post there if you want the entry in the common stream. Cross-post anywhere else that feels natural. The work does not belong to a platform; the index simply needs one address.</p></div>
+      <div><h3 class="item-title">3. Ask about the prompt</h3></div>
+      <div class="item-body"><p>When you reply, ask what surprised them or which word changed the result. Do not rank the output.</p></div>
     </div>
 
     <div class="item">
-      <div><h3 class="item-title">4. Ask about the ask</h3></div>
-      <div class="item-body"><p>When someone posts, do not score the result. Ask what surprised them. Ask which word survived. Ask what they would remove next time. Repost the entries that make the process visible, especially the strange misses.</p></div>
-    </div>
-
-    <div class="item">
-      <div><h3 class="item-title">5. Begin on October 1</h3><span class="badge">Now</span></div>
-      <div class="item-body"><p>The first prompt opens on <strong>October 1</strong>. Post one a day, one a week, or one when the idea is real enough to try. If you miss a day, return on the next one. Nothing needs to be caught up.</p></div>
+      <div><h3 class="item-title">4. Start October 1</h3><span class="badge">Now</span></div>
+      <div class="item-body"><p>Post as often as you want. Miss a day? Use the next prompt. No catch-up required.</p></div>
     </div>
   </section>
   </main>
@@ -603,9 +565,12 @@
     backToTopButton.classList.toggle('is-visible', window.scrollY > window.innerHeight * .75);
 
     const marker = Math.min(window.innerHeight * .3, 220);
-    let activeSection = sections[0];
-    for(const section of sections){
-      if(section.getBoundingClientRect().top <= marker) activeSection = section;
+    const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+    let activeSection = atBottom ? sections[sections.length - 1] : sections[0];
+    if(!atBottom){
+      for(const section of sections){
+        if(section.getBoundingClientRect().top <= marker) activeSection = section;
+      }
     }
     if(!activeSection) return;
 
