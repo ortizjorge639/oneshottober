@@ -141,10 +141,15 @@
   .example-story{padding:4px 0 28px;}
   .example-intro{display:grid;grid-template-columns:.34fr .66fr;gap:28px;margin-bottom:24px;}
   .example-intro>*{min-width:0;}
-  .prompt-card{margin:0 0 18px;padding:18px 20px;border:1px solid var(--rule-strong);
-    background:rgba(255,255,255,.18);font-size:15px;line-height:1.55;}
-  .prompt-card strong{display:block;margin-bottom:8px;font-size:11px;letter-spacing:.12em;
-    text-transform:uppercase;color:var(--muted);}
+  .entry-format{margin:0 0 18px;border:1px solid var(--rule-strong);
+    background:rgba(255,255,255,.18);}
+  .entry-field{display:grid;grid-template-columns:92px 1fr;gap:16px;padding:15px 18px;
+    border-bottom:1px solid var(--rule);}
+  .entry-field:last-child{border-bottom:0;}
+  .entry-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--muted);}
+  .entry-value{font-size:15px;line-height:1.55;}
+  .entry-value em{color:var(--muted);}
   .example-frame{display:block;width:100%;height:460px;border:1px solid var(--ink);
     background:#f2ecdf;}
   .frame-meta{display:flex;justify-content:space-between;gap:18px;margin:9px 0 24px;
@@ -154,6 +159,7 @@
     border-top:1px solid var(--rule);}
   .after-note>*{min-width:0;}
   .after-note h3{margin:0;font-size:14px;}
+  .after-note small{font-size:11px;font-weight:400;color:var(--muted);}
   .after-note p{margin:0;}
 
   .phase{font-size:13px;letter-spacing:.06em;font-weight:600;margin:26px 0 10px;}
@@ -168,6 +174,9 @@
   tbody tr:last-child td{border-bottom:none;}
   td:first-child,th:first-child{width:34px;color:var(--muted);}
   td:last-child,th:last-child{width:34%;color:var(--muted);}
+  .prompts-table td:last-child,.prompts-table th:last-child{width:auto;color:inherit;}
+  .prompts-table tbody td:last-child{font-family:var(--serif);font-size:17px;}
+  .source-note{margin:24px 0 0;color:var(--muted);font-size:12px;line-height:1.5;}
 
   footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
     font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
@@ -197,6 +206,7 @@
     .hero-mark{width:104px;height:104px;}
     .guidance{grid-template-columns:1fr;}
     .example-intro,.after-note{grid-template-columns:1fr;gap:8px;}
+    .entry-field{grid-template-columns:1fr;gap:4px;}
     .example-frame{height:390px;}
     .frame-meta{align-items:flex-start;}
     section{scroll-margin-top:96px;}
@@ -391,21 +401,34 @@
     <div class="example-story">
       <div class="example-intro">
       <div>
-        <h3 class="item-title">An example</h3>
-        <div class="item-lead">Day 1 asks for one sentence and no list. The prompt names a feeling and a few boundaries. The result is the entire file below.</div>
+        <h3 class="item-title">How to post an entry</h3>
+        <div class="item-lead">Lead with the day and its phrase. Show the exact prompt. Attach the output, or share a live link in the first comment. The after-note is optional.</div>
       </div>
       <div class="item-body">
-        <p>The idea was simple: two things can oppose each other without becoming a fight. They can trade places, make a pattern, disappear, and begin again.</p>
+        <p>Day 1 is intentionally open. <em>Between forms</em> could become an image, a story, a sound, a site, or something else entirely. This entry turned it into a moving geometric study.</p>
       </div>
       </div>
-      <p class="prompt-card"><strong>Prompt, verbatim</strong>make me a quiet black and cream animation where simple geometric shapes keep finding their opposites and fitting together for a moment before they come apart and start over and make it feel calm and alive without adding words controls or anything flashy</p>
+      <div class="entry-format" aria-label="Example OneShotTober post format">
+        <div class="entry-field">
+          <div class="entry-label">Day 1</div>
+          <div class="entry-value">Between forms</div>
+        </div>
+        <div class="entry-field">
+          <div class="entry-label">Prompt</div>
+          <div class="entry-value">make me a quiet black and cream animation where simple geometric shapes keep finding their opposites and fitting together for a moment before they come apart and start over and make it feel calm and alive without adding words controls or anything flashy</div>
+        </div>
+        <div class="entry-field">
+          <div class="entry-label">Output</div>
+          <div class="entry-value"><em>Attach the artifact to the post. If it is interactive, share the live link in the first comment or reply.</em></div>
+        </div>
+      </div>
       <iframe class="example-frame" src="example.html" title="One-shot output: generative geometric forms meeting and dissolving" loading="lazy" sandbox="allow-scripts"></iframe>
       <div class="frame-meta">
         <span>HTML canvas and JavaScript. Motion pauses when reduced motion is enabled.</span>
         <a href="example.html" target="_blank" rel="noopener">Open the output by itself</a>
       </div>
       <div class="after-note">
-        <h3>After-note</h3>
+        <h3>After-note <span class="visually-hidden">—</span><small>(optional)</small></h3>
         <p>I expected a few large shapes. It made a field of small relationships instead. The center still behaves like the main event, but the quieter story happens around it: each tile arrives at the same idea at a different time. The prompt asked for opposites. The output found cycles.</p>
       </div>
     </div>
@@ -415,81 +438,82 @@
     <h2 class="sec-head" id="prompts-heading">IV. 31 meta-prompts</h2>
     <div class="item">
       <div>
-        <h3 class="item-title">Creative lenses, not UX homework</h3>
-        <div class="item-lead">The month is loosely built from <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">Jakob Nielsen's ten usability heuristics</a>. Interface principles become broader creative questions: what is visible, what feels familiar, where choice lives, how mistakes recover, and what can be removed.</div>
+        <h3 class="item-title">A phrase, then your interpretation</h3>
+        <div class="item-lead">Each day gives you only a word or short phrase. It does not tell you what to make. Sit with it until it points somewhere, then write the one prompt only you would write.</div>
       </div>
       <div class="item-body">
-        <div class="phase">Phase 1 &middot; Make the invisible visible</div>
+        <div class="phase">Phase 1 &middot; Signals</div>
         <p class="table-hint" aria-hidden="true">Swipe sideways to see all columns.</p>
         <div class="table-scroll" role="region" aria-label="Phase 1 prompts" tabindex="0">
         <table>
-          <caption class="visually-hidden">Days 1 through 7: Make the invisible visible</caption>
-          <thead><tr><th scope="col">Day</th><th scope="col">Creative invitation</th><th scope="col">Heuristic lens</th></tr></thead>
+          <caption class="visually-hidden">Days 1 through 7: Signals</caption>
+          <thead><tr><th scope="col">Day</th><th scope="col">Meta-prompt</th></tr></thead>
           <tbody>
-            <tr><td>1</td><td>Show a process we usually see only after it is finished.</td><td>Feedback</td></tr>
-            <tr><td>2</td><td>Make the passage of time visible without using a clock.</td><td>Progress</td></tr>
-            <tr><td>3</td><td>Create something that clearly changes when attention reaches it.</td><td>Response</td></tr>
-            <tr><td>4</td><td>Turn an invisible system into a physical place someone could walk through.</td><td>Natural mapping</td></tr>
-            <tr><td>5</td><td>Take a familiar daily ritual and reveal the machinery underneath it.</td><td>Real-world model</td></tr>
-            <tr><td>6</td><td>Make an abstract feeling behave like weather.</td><td>Familiar language</td></tr>
-            <tr><td>7</td><td>Put before, during, and after into one frame.</td><td>System state</td></tr>
+            <tr><td>1</td><td>Between forms</td></tr>
+            <tr><td>2</td><td>Still changing</td></tr>
+            <tr><td>3</td><td>When noticed</td></tr>
+            <tr><td>4</td><td>Inside out</td></tr>
+            <tr><td>5</td><td>The hidden machine</td></tr>
+            <tr><td>6</td><td>Weather within</td></tr>
+            <tr><td>7</td><td>Before / during / after</td></tr>
           </tbody>
         </table>
         </div>
-        <div class="phase">Phase 2 &middot; Leave room for choice</div>
+        <div class="phase">Phase 2 &middot; Choice</div>
         <p class="table-hint" aria-hidden="true">Swipe sideways to see all columns.</p>
         <div class="table-scroll" role="region" aria-label="Phase 2 prompts" tabindex="0">
         <table>
-          <caption class="visually-hidden">Days 8 through 15: Leave room for choice</caption>
-          <thead><tr><th scope="col">Day</th><th scope="col">Creative invitation</th><th scope="col">Heuristic lens</th></tr></thead>
+          <caption class="visually-hidden">Days 8 through 15: Choice</caption>
+          <thead><tr><th scope="col">Day</th><th scope="col">Meta-prompt</th></tr></thead>
           <tbody>
-            <tr><td>8</td><td>Make a clear entrance and an equally clear way out.</td><td>Control</td></tr>
-            <tr><td>9</td><td>Make a reversible choice the center of the story.</td><td>Undo</td></tr>
-            <tr><td>10</td><td>Begin with a familiar form, then change exactly one rule.</td><td>Consistency</td></tr>
-            <tr><td>11</td><td>Repeat a pattern until one exception becomes impossible to ignore.</td><td>Standards</td></tr>
-            <tr><td>12</td><td>Give two unrelated things the same visual or verbal grammar.</td><td>Shared conventions</td></tr>
-            <tr><td>13</td><td>Imagine the mistake before it happens and design a gentle prevention.</td><td>Error prevention</td></tr>
-            <tr><td>14</td><td>Make something fragile difficult to misuse without making it dull.</td><td>Helpful constraints</td></tr>
-            <tr><td>15</td><td>Turn the moment before commitment into the most meaningful part.</td><td>Confirmation</td></tr>
+            <tr><td>8</td><td>The exit</td></tr>
+            <tr><td>9</td><td>Undo</td></tr>
+            <tr><td>10</td><td>One changed rule</td></tr>
+            <tr><td>11</td><td>The exception</td></tr>
+            <tr><td>12</td><td>Shared language</td></tr>
+            <tr><td>13</td><td>Before the mistake</td></tr>
+            <tr><td>14</td><td>Gentle limits</td></tr>
+            <tr><td>15</td><td>The threshold</td></tr>
           </tbody>
         </table>
         </div>
-        <div class="phase">Phase 3 &middot; Let the work carry the memory</div>
+        <div class="phase">Phase 3 &middot; Memory</div>
         <p class="table-hint" aria-hidden="true">Swipe sideways to see all columns.</p>
         <div class="table-scroll" role="region" aria-label="Phase 3 prompts" tabindex="0">
         <table>
-          <caption class="visually-hidden">Days 16 through 23: Let the work carry the memory</caption>
-          <thead><tr><th scope="col">Day</th><th scope="col">Creative invitation</th><th scope="col">Heuristic lens</th></tr></thead>
+          <caption class="visually-hidden">Days 16 through 23: Memory</caption>
+          <thead><tr><th scope="col">Day</th><th scope="col">Meta-prompt</th></tr></thead>
           <tbody>
-            <tr><td>16</td><td>Tell a memory through the objects left in the room.</td><td>Recognition</td></tr>
-            <tr><td>17</td><td>Make every clue needed to understand the piece visible inside it.</td><td>External memory</td></tr>
-            <tr><td>18</td><td>Create something a newcomer can enter and an expert can keep discovering.</td><td>Layered use</td></tr>
-            <tr><td>19</td><td>Let the same idea be reached by two different paths.</td><td>Flexibility</td></tr>
-            <tr><td>20</td><td>Hide a shortcut in plain sight for the person who returns.</td><td>Efficiency</td></tr>
-            <tr><td>21</td><td>Let the audience change one meaningful thing without breaking the whole.</td><td>Tailoring</td></tr>
-            <tr><td>22</td><td>Make the form explain what to do before any instructions appear.</td><td>Recognition</td></tr>
-            <tr><td>23</td><td>Reveal complexity only when someone moves closer.</td><td>Progressive disclosure</td></tr>
+            <tr><td>16</td><td>What remains</td></tr>
+            <tr><td>17</td><td>All clues present</td></tr>
+            <tr><td>18</td><td>First time / hundredth time</td></tr>
+            <tr><td>19</td><td>Another way</td></tr>
+            <tr><td>20</td><td>The shortcut</td></tr>
+            <tr><td>21</td><td>Leave a mark</td></tr>
+            <tr><td>22</td><td>Without instructions</td></tr>
+            <tr><td>23</td><td>Closer</td></tr>
           </tbody>
         </table>
         </div>
-        <div class="phase">Phase 4 &middot; Leave only what helps</div>
+        <div class="phase">Phase 4 &middot; Repair</div>
         <p class="table-hint" aria-hidden="true">Swipe sideways to see all columns.</p>
         <div class="table-scroll" role="region" aria-label="Phase 4 prompts" tabindex="0">
         <table>
-          <caption class="visually-hidden">Days 24 through 31: Leave only what helps</caption>
-          <thead><tr><th scope="col">Day</th><th scope="col">Creative invitation</th><th scope="col">Heuristic lens</th></tr></thead>
+          <caption class="visually-hidden">Days 24 through 31: Repair</caption>
+          <thead><tr><th scope="col">Day</th><th scope="col">Meta-prompt</th></tr></thead>
           <tbody>
-            <tr><td>24</td><td>Remove half the elements and protect the emotional center.</td><td>Restraint</td></tr>
-            <tr><td>25</td><td>Make empty space perform an actual job.</td><td>Hierarchy</td></tr>
-            <tr><td>26</td><td>Let one signal survive a field of noise.</td><td>Minimalism</td></tr>
-            <tr><td>27</td><td>Give a failure a name that a person would understand.</td><td>Diagnosis</td></tr>
-            <tr><td>28</td><td>Turn an error into the first useful step forward.</td><td>Recovery</td></tr>
-            <tr><td>29</td><td>Repair something without hiding where it broke.</td><td>Forgiveness</td></tr>
-            <tr><td>30</td><td>Explain a complicated task in three calm, concrete steps.</td><td>Help</td></tr>
-            <tr><td>31</td><td>Make one final piece that welcomes, responds, forgives, and knows when to stop.</td><td>Synthesis</td></tr>
+            <tr><td>24</td><td>Less, but alive</td></tr>
+            <tr><td>25</td><td>Useful emptiness</td></tr>
+            <tr><td>26</td><td>One clear signal</td></tr>
+            <tr><td>27</td><td>Name the break</td></tr>
+            <tr><td>28</td><td>A way forward</td></tr>
+            <tr><td>29</td><td>Visible repair</td></tr>
+            <tr><td>30</td><td>Three steps</td></tr>
+            <tr><td>31</td><td>Enough</td></tr>
           </tbody>
         </table>
         </div>
+        <p class="source-note">The sequence quietly borrows from <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">Jakob Nielsen's usability heuristics</a>: visibility, familiar language, control, recognition, restraint, and recovery.</p>
       </div>
     </div>
   </section>
