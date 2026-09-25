@@ -5,7 +5,7 @@ One prompt, one shot, shown out loud.
 This repository contains the static OneShotTober manifesto and 31-day prompt
 challenge. It uses plain HTML and CSS with no dependencies or build step.
 `index.html` contains the manifesto, and `example.html` contains the embedded
-ASCII-art one-shot example.
+generative-canvas one-shot example.
 
 ## Run locally
 
