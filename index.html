@@ -10,6 +10,8 @@
 <meta property="og:description" content="One prompt. One run. Show the ask beside the answer and let the distance tell the story.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://oneshottober.vercel.app/">
+<meta property="og:image" content="https://oneshottober.vercel.app/assets/oneshottober-mark.png">
+<link rel="icon" href="assets/oneshottober-mark.png" type="image/png">
 <style>
   :root{
     --paper:#f4efe3;
@@ -68,9 +70,12 @@
   .head .left{display:flex;align-items:center;}
   .head svg{width:15px;height:15px;margin-right:9px;vertical-align:middle;}
 
+  .hero-lockup{display:grid;grid-template-columns:148px minmax(0,1fr);gap:28px;
+    align-items:center;margin:30px 0 26px;}
+  .hero-mark{display:block;width:148px;height:148px;object-fit:contain;}
   h1.headline{font-family:var(--serif);font-weight:600;
     font-size:clamp(34px,6vw,52px);line-height:1.06;letter-spacing:-.01em;
-    margin:30px 0 26px;}
+    margin:0;}
 
   .intro{font-size:19px;line-height:1.6;margin-bottom:34px;}
   .intro strong{font-weight:600;}
@@ -188,6 +193,8 @@
     .metric .val{font-size:30px;}
     .reading-path{padding:18px;}
     .reading-path ol{grid-template-columns:repeat(2,1fr);}
+    .hero-lockup{grid-template-columns:104px minmax(0,1fr);gap:18px;margin:26px 0 22px;}
+    .hero-mark{width:104px;height:104px;}
     .guidance{grid-template-columns:1fr;}
     .example-intro,.after-note{grid-template-columns:1fr;gap:8px;}
     .example-frame{height:390px;}
@@ -204,6 +211,8 @@
     body{font-size:16px;}
     .wrap{padding-inline:16px;}
     .head{align-items:flex-start;gap:16px;}
+    .hero-lockup{grid-template-columns:1fr;gap:10px;}
+    .hero-mark{width:96px;height:96px;}
     .metrics{grid-template-columns:1fr;gap:16px;}
     .metric{display:grid;grid-template-columns:54px 1fr;column-gap:12px;align-items:baseline;}
     .metric .val{grid-row:1 / 3;margin:0;font-size:28px;}
@@ -263,7 +272,10 @@
     <time id="date"></time>
   </div>
 
-  <h1 class="headline" id="top" tabindex="-1">OneShotTober<br>One prompt, one shot, shown out loud</h1>
+  <div class="hero-lockup">
+    <img class="hero-mark" src="assets/oneshottober-mark.png" width="512" height="512" alt="">
+    <h1 class="headline" id="top" tabindex="-1">OneShotTober<br>One prompt, one shot, shown out loud</h1>
+  </div>
 
   <div class="intro">
     <p><strong>Most AI posts start too late.</strong> We see the finished image, the working site, the clean paragraph. We do not see the sentence that set it in motion. That sentence is usually the more human part: rushed, specific, uncertain, trying to reach something. OneShotTober puts it back in the frame. For 31 days, write one prompt, run it once, and show the ask beside the answer. No cleanup. No better take. Just what you meant, what came back, and the distance between them.</p>
