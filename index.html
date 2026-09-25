@@ -65,10 +65,8 @@
   .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;
     overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 
-  .head{display:flex;justify-content:space-between;align-items:center;
+  .head{display:flex;justify-content:flex-end;align-items:center;
     font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
-  .head .left{display:flex;align-items:center;}
-  .head svg{width:15px;height:15px;margin-right:9px;vertical-align:middle;}
 
   .hero-lockup{display:grid;grid-template-columns:148px minmax(0,1fr);gap:28px;
     align-items:center;margin:30px 0 26px;}
@@ -242,10 +240,10 @@
 </style>
 </head>
 <body>
-<a class="skip-link" href="#main-content">Skip to manifesto</a>
+<a class="skip-link" href="#main-content">Skip to content</a>
 <div class="reading-progress" aria-hidden="true"><span id="reading-progress"></span></div>
 
-<nav class="reading-guide" aria-label="Manifesto sections">
+<nav class="reading-guide" aria-label="Page sections">
   <div class="reading-guide-inner">
     <a class="wordmark" href="#top" aria-label="OneShotTober, back to top">OneShotTober</a>
     <ol class="section-nav">
@@ -263,10 +261,6 @@
 
   <header>
   <div class="head">
-    <span class="left">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><line x1="12" y1="1.5" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22.5" y2="12"/></svg>
-      Manifesto
-    </span>
     <time id="date"></time>
   </div>
 
