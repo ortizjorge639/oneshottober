@@ -116,6 +116,11 @@
   .item-body p:last-child{margin-bottom:0;}
   .item-body ul{margin:10px 0 0;padding-left:20px;}
   .item-body li{margin-bottom:7px;}
+  .guidance{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
+  .guide{padding:13px 14px;border-top:1px solid var(--rule-strong);
+    background:rgba(255,255,255,.12);font-size:13px;line-height:1.45;}
+  .guide strong{display:block;margin-bottom:4px;font-size:10px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--muted);}
 
   .quote-break{margin:48px 0;text-align:center;}
   .quote-break hr{border:none;border-top:1px solid var(--rule-strong);margin:0;}
@@ -183,6 +188,7 @@
     .metric .val{font-size:30px;}
     .reading-path{padding:18px;}
     .reading-path ol{grid-template-columns:repeat(2,1fr);}
+    .guidance{grid-template-columns:1fr;}
     .example-intro,.after-note{grid-template-columns:1fr;gap:8px;}
     .example-frame{height:390px;}
     .frame-meta{align-items:flex-start;}
@@ -325,22 +331,46 @@
 
     <div class="item">
       <div><h3 class="item-title">1. Write once. Run once.</h3><span class="badge">Core</span></div>
-      <div class="item-body"><p>Take your time with the prompt. The rule is not speed. The rule is one submission. When you send it, that is the shot. No follow-up, no reroll, no quiet repair after you see the result. If an agent works on its own from that single prompt, it still counts. If it asks you a question, the question is what came back.</p></div>
+      <div class="item-body">
+        <p>Take your time with the prompt. The rule is not speed. The rule is one submission. When you send it, that is the shot. No follow-up, no reroll, no quiet repair after you see the result. If an agent works on its own from that single prompt, it still counts. If it asks you a question, the question is what came back.</p>
+        <div class="guidance">
+          <div class="guide"><strong>Try</strong>Shape one honest prompt, send it once, and keep the first response.</div>
+          <div class="guide"><strong>Avoid</strong>Run six versions, choose the strongest, and present it as the first.</div>
+        </div>
+      </div>
     </div>
 
     <div class="item">
       <div><h3 class="item-title">2. Bring your own direction</h3><span class="badge">Core</span></div>
-      <div class="item-body"><p>Say what you want and why it matters. Use your own words instead of borrowing an artist, brand, or existing work as shorthand. Every entry is zero-shot: no sample to copy, no reference image handed over. The prompt has to carry the point of view. If we read only the ask, we should still be able to feel a person behind it.</p></div>
+      <div class="item-body">
+        <p>Say what you want and why it matters. Use your own words instead of borrowing an artist, brand, or existing work as shorthand. Every entry is zero-shot: no sample to copy, no reference image handed over. The prompt has to carry the point of view. If we read only the ask, we should still be able to feel a person behind it.</p>
+        <div class="guidance">
+          <div class="guide"><strong>Try</strong>“Make a room that feels recently abandoned but still warm.”</div>
+          <div class="guide"><strong>Avoid</strong>“Make it in the style of this living artist or familiar brand.”</div>
+        </div>
+      </div>
     </div>
 
     <div class="item">
       <div><h3 class="item-title">3. Show the prompt, verbatim</h3></div>
-      <div class="item-body"><p>Post the exact prompt beside the raw output. Keep the typos, the hedges, the run-on sentence. Do not tidy the evidence. Protect private or harmful material; skipping a post is always allowed. If you want, add one short note afterward: <em>I meant ___. It gave me ___.</em> The note explains the distance without changing the shot.</p></div>
+      <div class="item-body">
+        <p>Post the exact prompt beside the raw output. Keep the typos, the hedges, the run-on sentence. Do not tidy the evidence. Protect private or harmful material; skipping a post is always allowed. If you want, add one short note afterward: <em>I meant ___. It gave me ___.</em> The note explains the distance without changing the shot.</p>
+        <div class="guidance">
+          <div class="guide"><strong>Try</strong>Keep the awkward phrase that pulled the result somewhere unexpected.</div>
+          <div class="guide"><strong>Avoid</strong>Rewrite the prompt afterward so the result looks more intentional.</div>
+        </div>
+      </div>
     </div>
 
     <div class="item">
       <div><h3 class="item-title">4. Any medium. No streak required.</h3></div>
-      <div class="item-body"><p>Make an image, a paragraph, a song, a chart, a recipe, a site, or a small tool. Rotate if you want. Join for one day or all 31. Missing a day does not break anything. This is a collection of attempts, not a test of attendance.</p></div>
+      <div class="item-body">
+        <p>Make an image, a paragraph, a song, a chart, a recipe, a site, or a small tool. Rotate if you want. Join for one day or all 31. Missing a day does not break anything. This is a collection of attempts, not a test of attendance.</p>
+        <div class="guidance">
+          <div class="guide"><strong>Try</strong>Follow the idea into the medium that makes its tension easiest to feel.</div>
+          <div class="guide"><strong>Avoid</strong>Choose a medium only because it reliably produces impressive posts.</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -373,78 +403,78 @@
     <h2 class="sec-head" id="prompts-heading">IV. 31 meta-prompts</h2>
     <div class="item">
       <div>
-        <h3 class="item-title">Meta-prompts, not assignments</h3>
-        <div class="item-lead">Each day changes the way you ask, not the thing you make. Start anywhere. Skip what does not move you. The month travels from noticing your language to choosing with more intention.</div>
+        <h3 class="item-title">Creative lenses, not UX homework</h3>
+        <div class="item-lead">The month is loosely built from <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">Jakob Nielsen's ten usability heuristics</a>. Interface principles become broader creative questions: what is visible, what feels familiar, where choice lives, how mistakes recover, and what can be removed.</div>
       </div>
       <div class="item-body">
-        <div class="phase">Phase 1 &middot; Notice your language</div>
+        <div class="phase">Phase 1 &middot; Make the invisible visible</div>
         <p class="table-hint" aria-hidden="true">Swipe sideways to see all columns.</p>
         <div class="table-scroll" role="region" aria-label="Phase 1 prompts" tabindex="0">
         <table>
-          <caption class="visually-hidden">Days 1 through 7: Notice your language</caption>
-          <thead><tr><th scope="col">Day</th><th scope="col">Meta-prompt</th><th scope="col">What you're exploring</th></tr></thead>
+          <caption class="visually-hidden">Days 1 through 7: Make the invisible visible</caption>
+          <thead><tr><th scope="col">Day</th><th scope="col">Creative invitation</th><th scope="col">Heuristic lens</th></tr></thead>
           <tbody>
-            <tr><td>1</td><td>Say the whole thing in one breath. One sentence, no lists.</td><td>Economy</td></tr>
-            <tr><td>2</td><td>One word. Then watch how much the model invents for you.</td><td>Defaults</td></tr>
-            <tr><td>3</td><td>Get what you want without ever naming it.</td><td>Describing, not pointing</td></tr>
-            <tr><td>4</td><td>Say only what to keep out.</td><td>Definition by absence</td></tr>
-            <tr><td>5</td><td>Dead-literal. Concrete words only, no metaphor.</td><td>Precision</td></tr>
-            <tr><td>6</td><td>All metaphor. Describe it as something else and don't explain.</td><td>Suggestion</td></tr>
-            <tr><td>7</td><td>Plain human words. No jargon, no prompt-craft tricks.</td><td>Plain speech</td></tr>
+            <tr><td>1</td><td>Show a process we usually see only after it is finished.</td><td>Feedback</td></tr>
+            <tr><td>2</td><td>Make the passage of time visible without using a clock.</td><td>Progress</td></tr>
+            <tr><td>3</td><td>Create something that clearly changes when attention reaches it.</td><td>Response</td></tr>
+            <tr><td>4</td><td>Turn an invisible system into a physical place someone could walk through.</td><td>Natural mapping</td></tr>
+            <tr><td>5</td><td>Take a familiar daily ritual and reveal the machinery underneath it.</td><td>Real-world model</td></tr>
+            <tr><td>6</td><td>Make an abstract feeling behave like weather.</td><td>Familiar language</td></tr>
+            <tr><td>7</td><td>Put before, during, and after into one frame.</td><td>System state</td></tr>
           </tbody>
         </table>
         </div>
-        <div class="phase">Phase 2 &middot; Change your perspective</div>
+        <div class="phase">Phase 2 &middot; Leave room for choice</div>
         <p class="table-hint" aria-hidden="true">Swipe sideways to see all columns.</p>
         <div class="table-scroll" role="region" aria-label="Phase 2 prompts" tabindex="0">
         <table>
-          <caption class="visually-hidden">Days 8 through 16: Change your perspective</caption>
-          <thead><tr><th scope="col">Day</th><th scope="col">Meta-prompt</th><th scope="col">What you're exploring</th></tr></thead>
+          <caption class="visually-hidden">Days 8 through 15: Leave room for choice</caption>
+          <thead><tr><th scope="col">Day</th><th scope="col">Creative invitation</th><th scope="col">Heuristic lens</th></tr></thead>
           <tbody>
-            <tr><td>8</td><td>Explain it to a total stranger.</td><td>Clarity</td></tr>
-            <tr><td>9</td><td>Say it to someone who already knows you.</td><td>Shorthand</td></tr>
-            <tr><td>10</td><td>Ask for a feeling and let the thing follow.</td><td>Intent over object</td></tr>
-            <tr><td>11</td><td>Nail the mood, leave the subject wide open.</td><td>Voice</td></tr>
-            <tr><td>12</td><td>Take something tiny and make it monumental.</td><td>Scale</td></tr>
-            <tr><td>13</td><td>Take something huge and make it intimate.</td><td>Proportion</td></tr>
-            <tr><td>14</td><td>Smash two unrelated worlds together.</td><td>Range</td></tr>
-            <tr><td>15</td><td>Steal a structure from another medium (a recipe as a portrait).</td><td>Form</td></tr>
-            <tr><td>16</td><td>Pull it from real life: a memory, a place, a sound.</td><td>Specificity</td></tr>
+            <tr><td>8</td><td>Make a clear entrance and an equally clear way out.</td><td>Control</td></tr>
+            <tr><td>9</td><td>Make a reversible choice the center of the story.</td><td>Undo</td></tr>
+            <tr><td>10</td><td>Begin with a familiar form, then change exactly one rule.</td><td>Consistency</td></tr>
+            <tr><td>11</td><td>Repeat a pattern until one exception becomes impossible to ignore.</td><td>Standards</td></tr>
+            <tr><td>12</td><td>Give two unrelated things the same visual or verbal grammar.</td><td>Shared conventions</td></tr>
+            <tr><td>13</td><td>Imagine the mistake before it happens and design a gentle prevention.</td><td>Error prevention</td></tr>
+            <tr><td>14</td><td>Make something fragile difficult to misuse without making it dull.</td><td>Helpful constraints</td></tr>
+            <tr><td>15</td><td>Turn the moment before commitment into the most meaningful part.</td><td>Confirmation</td></tr>
           </tbody>
         </table>
         </div>
-        <div class="phase">Phase 3 &middot; Make deliberate choices</div>
+        <div class="phase">Phase 3 &middot; Let the work carry the memory</div>
         <p class="table-hint" aria-hidden="true">Swipe sideways to see all columns.</p>
         <div class="table-scroll" role="region" aria-label="Phase 3 prompts" tabindex="0">
         <table>
-          <caption class="visually-hidden">Days 17 through 24: Make deliberate choices</caption>
-          <thead><tr><th scope="col">Day</th><th scope="col">Meta-prompt</th><th scope="col">What you're exploring</th></tr></thead>
+          <caption class="visually-hidden">Days 16 through 23: Let the work carry the memory</caption>
+          <thead><tr><th scope="col">Day</th><th scope="col">Creative invitation</th><th scope="col">Heuristic lens</th></tr></thead>
           <tbody>
-            <tr><td>17</td><td>Pick one rule that must survive to the end. Free the rest.</td><td>Leverage</td></tr>
-            <tr><td>18</td><td>Give it almost nothing: a tiny budget of words, seconds, or parts.</td><td>Discipline</td></tr>
-            <tr><td>19</td><td>Hand it a rule, withhold the subject.</td><td>Trust</td></tr>
-            <tr><td>20</td><td>Hand it a subject, withhold the rule.</td><td>Openness</td></tr>
-            <tr><td>21</td><td>Decide two things. Hand the third, on purpose, to the model.</td><td>Delegation</td></tr>
-            <tr><td>22</td><td>Demand two things that can't both be true.</td><td>Contradiction</td></tr>
-            <tr><td>23</td><td>Name a default you hate (glossy, cheerful, symmetrical) and ask for its opposite.</td><td>Taste</td></tr>
-            <tr><td>24</td><td>Ask for the thing you want but have no idea how to get.</td><td>Reach</td></tr>
+            <tr><td>16</td><td>Tell a memory through the objects left in the room.</td><td>Recognition</td></tr>
+            <tr><td>17</td><td>Make every clue needed to understand the piece visible inside it.</td><td>External memory</td></tr>
+            <tr><td>18</td><td>Create something a newcomer can enter and an expert can keep discovering.</td><td>Layered use</td></tr>
+            <tr><td>19</td><td>Let the same idea be reached by two different paths.</td><td>Flexibility</td></tr>
+            <tr><td>20</td><td>Hide a shortcut in plain sight for the person who returns.</td><td>Efficiency</td></tr>
+            <tr><td>21</td><td>Let the audience change one meaningful thing without breaking the whole.</td><td>Tailoring</td></tr>
+            <tr><td>22</td><td>Make the form explain what to do before any instructions appear.</td><td>Recognition</td></tr>
+            <tr><td>23</td><td>Reveal complexity only when someone moves closer.</td><td>Progressive disclosure</td></tr>
           </tbody>
         </table>
         </div>
-        <div class="phase">Phase 4 &middot; Reflect</div>
+        <div class="phase">Phase 4 &middot; Leave only what helps</div>
         <p class="table-hint" aria-hidden="true">Swipe sideways to see all columns.</p>
         <div class="table-scroll" role="region" aria-label="Phase 4 prompts" tabindex="0">
         <table>
-          <caption class="visually-hidden">Days 25 through 31: Reflect</caption>
-          <thead><tr><th scope="col">Day</th><th scope="col">Meta-prompt</th><th scope="col">What you're exploring</th></tr></thead>
+          <caption class="visually-hidden">Days 24 through 31: Leave only what helps</caption>
+          <thead><tr><th scope="col">Day</th><th scope="col">Creative invitation</th><th scope="col">Heuristic lens</th></tr></thead>
           <tbody>
-            <tr><td>25</td><td>Ask for what you actually want, impressive or not.</td><td>Candor</td></tr>
-            <tr><td>26</td><td>Show an unfashionable taste or a small obsession. Nothing private required.</td><td>Nerve</td></tr>
-            <tr><td>27</td><td>Credit an influence and the one thing it taught you. No copying its style.</td><td>Credit</td></tr>
-            <tr><td>28</td><td>The prompt nobody but you would write.</td><td>Signature</td></tr>
-            <tr><td>29</td><td>Prompt the tool about prompting.</td><td>Reflection</td></tr>
-            <tr><td>30</td><td>Re-shoot day 1 from scratch. Post both. Say what changed.</td><td>Growth</td></tr>
-            <tr><td>31</td><td>Take the constraint that taught you most and fire one last shot.</td><td>Culmination</td></tr>
+            <tr><td>24</td><td>Remove half the elements and protect the emotional center.</td><td>Restraint</td></tr>
+            <tr><td>25</td><td>Make empty space perform an actual job.</td><td>Hierarchy</td></tr>
+            <tr><td>26</td><td>Let one signal survive a field of noise.</td><td>Minimalism</td></tr>
+            <tr><td>27</td><td>Give a failure a name that a person would understand.</td><td>Diagnosis</td></tr>
+            <tr><td>28</td><td>Turn an error into the first useful step forward.</td><td>Recovery</td></tr>
+            <tr><td>29</td><td>Repair something without hiding where it broke.</td><td>Forgiveness</td></tr>
+            <tr><td>30</td><td>Explain a complicated task in three calm, concrete steps.</td><td>Help</td></tr>
+            <tr><td>31</td><td>Make one final piece that welcomes, responds, forgives, and knows when to stop.</td><td>Synthesis</td></tr>
           </tbody>
         </table>
         </div>
