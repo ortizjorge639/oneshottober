@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OneShotTober — One prompt, one shot, shown out loud</title>
-<meta name="description" content="OneShotTober: one unedited prompt a day for the month of October, fired once, shown next to whatever it gave back. Share the intent, not just the output.">
+<meta name="description" content="One prompt. One run. Show the exact ask beside what came back. OneShotTober is a 31-day practice in making creative intention visible.">
 <link rel="canonical" href="https://oneshottober.vercel.app/">
 <meta property="og:title" content="OneShotTober">
-<meta property="og:description" content="One prompt, one shot, shown out loud. 31 days of showing the ask, not just the answer.">
+<meta property="og:description" content="One prompt. One run. Show the ask beside the answer and let the distance tell the story.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://oneshottober.vercel.app/">
 <style>
@@ -128,6 +128,24 @@
     background:rgba(0,0,0,.02);font-family:var(--serif);font-size:17px;line-height:1.5;}
   blockquote.inline p{margin:0;}
 
+  .example-story{padding:4px 0 28px;}
+  .example-intro{display:grid;grid-template-columns:.34fr .66fr;gap:28px;margin-bottom:24px;}
+  .example-intro>*{min-width:0;}
+  .prompt-card{margin:0 0 18px;padding:18px 20px;border:1px solid var(--rule-strong);
+    background:rgba(255,255,255,.18);font-size:15px;line-height:1.55;}
+  .prompt-card strong{display:block;margin-bottom:8px;font-size:11px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--muted);}
+  .example-frame{display:block;width:100%;height:460px;border:1px solid var(--ink);
+    background:#f2ecdf;}
+  .frame-meta{display:flex;justify-content:space-between;gap:18px;margin:9px 0 24px;
+    color:var(--muted);font-size:12px;}
+  .frame-meta a{min-height:44px;display:inline-flex;align-items:center;}
+  .after-note{display:grid;grid-template-columns:.34fr .66fr;gap:28px;padding-top:20px;
+    border-top:1px solid var(--rule);}
+  .after-note>*{min-width:0;}
+  .after-note h3{margin:0;font-size:14px;}
+  .after-note p{margin:0;}
+
   .phase{font-size:13px;letter-spacing:.06em;font-weight:600;margin:26px 0 10px;}
   .phase:first-child{margin-top:0;}
   .table-scroll{width:100%;max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain;
@@ -165,6 +183,9 @@
     .metric .val{font-size:30px;}
     .reading-path{padding:18px;}
     .reading-path ol{grid-template-columns:repeat(2,1fr);}
+    .example-intro,.after-note{grid-template-columns:1fr;gap:8px;}
+    .example-frame{height:390px;}
+    .frame-meta{align-items:flex-start;}
     section{scroll-margin-top:96px;}
     .table-hint{display:block;}
     .table-scroll{margin-right:-20px;padding-right:20px;}
@@ -182,6 +203,9 @@
     .metric .val{grid-row:1 / 3;margin:0;font-size:28px;}
     .metric .lab{margin:0;}
     .reading-path ol{grid-template-columns:1fr 1fr;gap:12px;}
+    .example-frame{height:340px;}
+    .frame-meta{display:block;}
+    .frame-meta a{margin-top:4px;}
     .table-scroll{margin-right:-16px;padding-right:16px;}
   }
   @media (prefers-reduced-motion:reduce){
@@ -236,7 +260,7 @@
   <h1 class="headline" id="top" tabindex="-1">OneShotTober<br>One prompt, one shot, shown out loud</h1>
 
   <div class="intro">
-    <p><strong>Share the intent, not just the output.</strong> One unedited prompt a day, fired once, shown next to whatever it gave back. The AI bubble usually shows you the polished result and hides the reaching. This does the opposite: it puts the raw run-on sentence on the table, typos and nerve and all, so people can see what you actually wanted and where the model met you or missed you. The gap between what you meant and what you got is the point. Taking cues from the daily-challenge tradition, this is 31 meta-prompts, one a day, each one inviting the unfiltered creative in you out into the open. Tag them <strong>#oneshottober</strong> and <strong>#oneshotchallenge</strong>, and tag <strong>@oneshottober</strong>.</p>
+    <p><strong>Most AI posts start too late.</strong> We see the finished image, the working site, the clean paragraph. We do not see the sentence that set it in motion. That sentence is usually the more human part: rushed, specific, uncertain, trying to reach something. OneShotTober puts it back in the frame. For 31 days, write one prompt, run it once, and show the ask beside the answer. No cleanup. No better take. Just what you meant, what came back, and the distance between them.</p>
   </div>
 
   <div class="metrics">
@@ -264,8 +288,7 @@
   <div class="quote-break">
     <hr>
     <blockquote>
-      <p>The things we make are just the output. The real creativity is the idea that allows the thing to be made.</p>
-      <cite>Rick Rubin</cite>
+      <p>The result shows what happened. The prompt shows what you were trying to make happen.</p>
     </blockquote>
     <hr>
   </div>
@@ -274,25 +297,25 @@
     <h2 class="sec-head" id="beliefs-heading">I. What we believe</h2>
 
     <div class="item">
-      <div><h3 class="item-title">1. The prompt is the confession</h3></div>
-      <div class="item-body"><p><strong>The output is what you made. The prompt is who you were the moment you reached for it.</strong> If the idea is the real creative act, the prompt, not the picture, is the work, and hiding it behind a clean result hides the only honest part. So show the sentence. Let it be unguarded. The reaching is the thing worth seeing.</p></div>
+      <div><h3 class="item-title">1. The prompt is the first draft of the idea</h3></div>
+      <div class="item-body"><p>You know the moment. The box is empty. You start typing before the thought is fully formed. Halfway through, you realize what you are actually asking for. <strong>That first sentence holds the decision.</strong> The output may be polished. The prompt still has fingerprints on it.</p></div>
     </div>
 
     <div class="item">
-      <div><h3 class="item-title">2. One shot removes the mask</h3></div>
-      <div class="item-body"><p>No re-rolls, no polishing yourself into someone smarter than you were when you started typing. You send the first real reach, fingerprints and surprises intact. The unedited version is more alive than the buffed one, and everyone can feel the difference.</p></div>
+      <div><h3 class="item-title">2. One shot keeps the moment intact</h3></div>
+      <div class="item-body"><p>Iteration is useful. This is a different practice. One shot keeps you from sanding away the original instinct after you know the answer. You can think carefully before you send. Once you send, the moment is closed. Keep what happened.</p></div>
     </div>
 
     <div class="item">
-      <div><h3 class="item-title">3. The gap is where you're most exposed</h3></div>
-      <div class="item-body"><p>Every entry lays two things side by side: what you asked for and what came back. The space between them is where you're most exposed and most interesting, where the model surprised you, misread you, or went somewhere you never meant to go. Don't smooth it over. What you post is that gap, not just the result.</p></div>
+      <div><h3 class="item-title">3. The distance is the story</h3></div>
+      <div class="item-body"><p>You asked for warm and got polished. You asked for simple and got empty. You asked for a tool and got a toy. That distance is not a failure to hide. It shows which words carried the idea and which ones let it drift. Put the two sides together. Let people see the crossing.</p></div>
     </div>
   </section>
 
   <div class="quote-break">
     <hr>
     <blockquote>
-      <p>Showing what you made is easy. Showing the raw sentence you asked it with is the honest part, and it's what this challenge is for.</p>
+      <p>Do not improve the story after you know how it ends.</p>
     </blockquote>
     <hr>
   </div>
@@ -301,37 +324,47 @@
     <h2 class="sec-head" id="rules-heading">II. The rules</h2>
 
     <div class="item">
-      <div><h3 class="item-title">1. One shot</h3><span class="badge">Core</span></div>
-      <div class="item-body"><p><strong>Write it once, fire it once, post what comes back.</strong> Take your time composing the ask; the rule is one submission, not spontaneous wording. Once you send it, that's the shot: no follow-ups, no re-rolls, no edits after seeing the result. An agent running autonomously from that one prompt is fine; sending it corrections across turns is not. If the tool asks a question or returns a batch, that counts as your shot, so post what you get instead of regenerating.</p></div>
+      <div><h3 class="item-title">1. Write once. Run once.</h3><span class="badge">Core</span></div>
+      <div class="item-body"><p>Take your time with the prompt. The rule is not speed. The rule is one submission. When you send it, that is the shot. No follow-up, no reroll, no quiet repair after you see the result. If an agent works on its own from that single prompt, it still counts. If it asks you a question, the question is what came back.</p></div>
     </div>
 
     <div class="item">
-      <div><h3 class="item-title">2. Your own direction</h3><span class="badge">Core</span></div>
-      <div class="item-body"><p><strong>Describe what you want and what matters about it.</strong> Naming what you want is fine; that's direction. What's off-limits is substituting an existing work, brand, or artist for your own direction ("make it look like [artist]," "the X of Y"). Every entry is <em>zero-shot</em>: no examples, no reference handed over, the ask carries everything. The test: could someone read only your prompt and tell it was written with a point of view?</p></div>
+      <div><h3 class="item-title">2. Bring your own direction</h3><span class="badge">Core</span></div>
+      <div class="item-body"><p>Say what you want and why it matters. Use your own words instead of borrowing an artist, brand, or existing work as shorthand. Every entry is zero-shot: no sample to copy, no reference image handed over. The prompt has to carry the point of view. If we read only the ask, we should still be able to feel a person behind it.</p></div>
     </div>
 
     <div class="item">
       <div><h3 class="item-title">3. Show the prompt, verbatim</h3></div>
-      <div class="item-body"><p>Post the prompt and the raw output together, typos and hedges and all. Don't tidy it after the fact. Never post sensitive or harmful content; if you'd rather withhold a result, skipping it is fine and still counts. Optional but encouraged: an after-note that doesn't change the shot, "I meant ___. It gave me ___." It surfaces the gap and gives people a way in.</p></div>
+      <div class="item-body"><p>Post the exact prompt beside the raw output. Keep the typos, the hedges, the run-on sentence. Do not tidy the evidence. Protect private or harmful material; skipping a post is always allowed. If you want, add one short note afterward: <em>I meant ___. It gave me ___.</em> The note explains the distance without changing the shot.</p></div>
     </div>
 
     <div class="item">
-      <div><h3 class="item-title">4. Any medium, join in</h3></div>
-      <div class="item-body"><p>Image, paragraph, song, chart, recipe, code, lesson plan: your choice, or rotate. Keep it to stills, text, or audio, no video, which keeps the cost light too. It's 31 meta-prompts, not a streak, so join for as many as you like. Tag <strong>#oneshottober</strong> and <strong>#oneshotchallenge</strong> so the run reads as one thing.</p></div>
+      <div><h3 class="item-title">4. Any medium. No streak required.</h3></div>
+      <div class="item-body"><p>Make an image, a paragraph, a song, a chart, a recipe, a site, or a small tool. Rotate if you want. Join for one day or all 31. Missing a day does not break anything. This is a collection of attempts, not a test of attendance.</p></div>
     </div>
   </section>
 
   <section id="example" data-nav-label="What an entry looks like" aria-labelledby="example-heading">
     <h2 class="sec-head" id="example-heading">III. What an entry looks like</h2>
-    <div class="item">
+    <div class="example-story">
+      <div class="example-intro">
       <div>
         <h3 class="item-title">An example</h3>
-        <div class="item-lead">Show the interesting misses, not only the clean wins. This one takes the Day 1 meta-prompt, one run-on sentence, and asks for a whole website.</div>
+        <div class="item-lead">Day 1 asks for one sentence and no list. The prompt is ordinary on purpose. The result is the entire file below.</div>
       </div>
       <div class="item-body">
-        <p><strong>Prompt, verbatim:</strong> build me a one page portfolio site for a self taught furniture maker who works in reclaimed oak that should feel like a quiet workshop at dawn not a startup so warm off-white lots of empty space big photos of the work only a few words and a contact link at the bottom that doesn't shout</p>
-        <blockquote class="inline"><p>What came back: a single scrolling page. An oversized hero photo, the maker's name set small in a serif, three furniture shots with one-line captions, and a plain email link in the footer. Clean, warmish, no navigation.</p></blockquote>
-        <p><strong>After-note.</strong> I meant a quiet workshop at dawn. It gave me quiet, but corporate-quiet: the off-white read as minimal-tech instead of warm wood, and the word "portfolio" dragged it toward a template. The drift from warm to corporate is what makes it worth posting. Next shot, I'd cut "portfolio" entirely.</p>
+        <p>The idea started with a real memory: waiting for a bus before anyone else was awake, hearing water beyond the road, and watching one bad light make the empty shelter feel occupied.</p>
+      </div>
+      </div>
+      <p class="prompt-card"><strong>Prompt, verbatim</strong>make me a small webpage that feels like waiting alone at a bus stop by the water before sunrise using only keyboard characters in black and cream and let the water move a little and the light breathe but keep the whole thing quiet and don't add instructions or buttons</p>
+      <iframe class="example-frame" src="example.html" title="One-shot output: animated ASCII bus shelter beside water before sunrise" loading="lazy" sandbox></iframe>
+      <div class="frame-meta">
+        <span>HTML and CSS only. Motion pauses when reduced motion is enabled.</span>
+        <a href="example.html" target="_blank" rel="noopener">Open the output by itself</a>
+      </div>
+      <div class="after-note">
+        <h3>After-note</h3>
+        <p>I pictured a roadside shelter with the water somewhere offscreen. It put the shelter almost in the water and turned the light into the center of the scene. That is not what I saw in my head. It is better evidence of which part of the prompt the model cared about: not the bus, the waiting.</p>
       </div>
     </div>
   </section>
@@ -341,7 +374,7 @@
     <div class="item">
       <div>
         <h3 class="item-title">Meta-prompts, not assignments</h3>
-        <div class="item-lead">Each day limits how you ask, not what you make, so it works in any medium. These are meta-prompts, not tests. The rules are the spine; skip, reorder, or bring your own. Four phases move from noticing your words to reflecting on the month.</div>
+        <div class="item-lead">Each day changes the way you ask, not the thing you make. Start anywhere. Skip what does not move you. The month travels from noticing your language to choosing with more intention.</div>
       </div>
       <div class="item-body">
         <div class="phase">Phase 1 &middot; Notice your language</div>
@@ -423,23 +456,23 @@
     <h2 class="sec-head" id="pitfalls-heading">V. Where this could go wrong</h2>
 
     <div class="item">
-      <div><h3 class="item-title">1. The honesty is unenforceable</h3></div>
-      <div class="item-body"><p>Two ways people quietly break it. The obvious one: generate fifty times, pick the winner, post it as one shot. The subtler and more common one: send the prompt, then coax the agent across several follow-up turns until it lands, and call the whole conversation a single ask. The second feels innocent, so it's the one that slips through most often. The rules only mean something if people hold themselves to them. It self-selects for people who want the practice rather than the applause, and over a month the honest posts become easy to recognize.</p></div>
+      <div><h3 class="item-title">1. Nobody can verify the one shot</h3></div>
+      <div class="item-body"><p>You can run fifty versions, choose the best, and say it was the first. You can guide an agent through ten corrections and call the conversation one prompt. There is no referee for this. The rule survives only when the person posting wants the practice more than the appearance of getting it right.</p></div>
     </div>
 
     <div class="item">
-      <div><h3 class="item-title">2. It slides back into an output contest</h3></div>
-      <div class="item-body"><p>The fastest way this dies: everyone posts only their best result and buries the misses, and the audience starts praising the prettiest output instead of the sharpest ask. Both put the focus back on the output, which is the one thing this was built to move away from. Fight it by showing the misses too, and by asking about the ask in the replies: which phrase shaped the result? what did the model assume? where did the intention survive or get lost? Resist ranking whose prompt is "best."</p></div>
+      <div><h3 class="item-title">2. The output can take over again</h3></div>
+      <div class="item-body"><p>The prettiest result will always be easier to praise. If we only repost the clean wins, the prompt disappears and this becomes another output contest. Show the misses. In the replies, ask which phrase changed the result, what the model assumed, and where the original idea went missing.</p></div>
     </div>
 
     <div class="item">
-      <div><h3 class="item-title">3. One shot can reward playing it safe</h3></div>
-      <div class="item-body"><p>Because you can't iterate, there's a pull toward the reliable, model-pleasing prompt that's sure to land something decent. That's the opposite of the point. Reach past what you know will work. A bold prompt that misses makes a more honest post than a safe one that lands.</p></div>
+      <div><h3 class="item-title">3. One shot can make you cautious</h3></div>
+      <div class="item-body"><p>When there is no second try, the safe prompt starts to look smart. Resist it. Ask for the thing you do not already know how to get. A clear miss can teach you more than a predictable success.</p></div>
     </div>
 
     <div class="item">
-      <div><h3 class="item-title">4. "Democratizing creativity" is a trap phrase</h3></div>
-      <div class="item-body"><p>It's tempting to sell this as "anyone can make art now." Resist that. It's the exact line used to launder training-data extraction, and it claims far more than one raw prompt earns. This trains a different skill, direction. It doesn't replace making or rank above it. Credit your influences; never impersonate a living artist to pass their look off as your eye.</p></div>
+      <div><h3 class="item-title">4. Direction is not the whole craft</h3></div>
+      <div class="item-body"><p>A prompt can hold an idea. It does not replace the years inside another person's hand, ear, or eye. Credit what shaped you. Do not use a living artist's name as a shortcut to their work. This challenge practices direction. It does not claim direction is everything.</p></div>
     </div>
   </section>
 
@@ -447,28 +480,28 @@
     <h2 class="sec-head" id="spread-heading">VI. Spread the word</h2>
 
     <div class="item">
-      <div><h3 class="item-title">1. Follow and tag @oneshottober</h3></div>
-      <div class="item-body"><p>There's one hub: <strong>@oneshottober</strong>. Tag it on every entry so it can repost you, and follow it to watch the whole run in one place. The account is the campfire; the tags are how everyone finds it.</p></div>
+      <div><h3 class="item-title">1. Put the two sides together</h3></div>
+      <div class="item-body"><p>Post the prompt and output in the same place. Do not make people hunt for the ask in a thread. If you add an after-note, put it directly below them. The whole entry should read like one small story: intention, result, distance.</p></div>
     </div>
 
     <div class="item">
-      <div><h3 class="item-title">2. Both tags, every post</h3></div>
-      <div class="item-body"><p><strong>#oneshottober</strong> and <strong>#oneshotchallenge</strong> on everything, no exceptions. The first marks the run; the second catches the wider search. Put them in the post itself, not a reply, so they actually get indexed.</p></div>
+      <div><h3 class="item-title">2. Use the shared tags</h3></div>
+      <div class="item-body"><p>Add <strong>#oneshottober</strong> and <strong>#oneshotchallenge</strong> to the post itself. Tag <strong>@oneshottober</strong> so the account can find and share the entry. The tags are not decoration. They are how separate attempts become one visible month.</p></div>
     </div>
 
     <div class="item">
-      <div><h3 class="item-title">3. X is home base</h3></div>
-      <div class="item-body"><p>Post the prompt and the raw output in the same post, where they sit side by side. Add the "I meant / it gave me" note as a reply if you like. Cross-post anywhere you want, but the tag lives on X, so that's where the run stays browsable.</p></div>
+      <div><h3 class="item-title">3. X is the index, not the limit</h3></div>
+      <div class="item-body"><p>X is where the shared tag stays browsable. Post there if you want the entry in the common stream. Cross-post anywhere else that feels natural. The work does not belong to a platform; the index simply needs one address.</p></div>
     </div>
 
     <div class="item">
-      <div><h3 class="item-title">4. Amplify, don't rank</h3></div>
-      <div class="item-body"><p>Repost others in the tag every day. When you reply, ask about the ask: which phrase shaped the result, what the model assumed, where the intention survived. Never rank whose prompt is "best." Reposting others keeps the tag alive. The moment it turns into a contest, people stop showing up.</p></div>
+      <div><h3 class="item-title">4. Ask about the ask</h3></div>
+      <div class="item-body"><p>When someone posts, do not score the result. Ask what surprised them. Ask which word survived. Ask what they would remove next time. Repost the entries that make the process visible, especially the strange misses.</p></div>
     </div>
 
     <div class="item">
-      <div><h3 class="item-title">5. The countdown to October 1</h3><span class="badge">Now</span></div>
-      <div class="item-body"><p>This week, seed the tag: post a few example entries so day one isn't an empty room. On <strong>October 1</strong>, everyone's first shot goes live together. Then one a day through the 31st, or as many as you can. Miss a day, pick it back up; it's meta-prompts, not a streak.</p></div>
+      <div><h3 class="item-title">5. Begin on October 1</h3><span class="badge">Now</span></div>
+      <div class="item-body"><p>The first prompt opens on <strong>October 1</strong>. Post one a day, one a week, or one when the idea is real enough to try. If you miss a day, return on the next one. Nothing needs to be caught up.</p></div>
     </div>
   </section>
   </main>
