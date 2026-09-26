@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">OneShotTober</title>
+  <desc id="description">One prompt, one shot, shown out loud. A 31-day creative practice.</desc>
+
+  <rect width="1200" height="630" fill="#f4efe3"/>
+
+  <image href="oneshottober-mark.png" xlink:href="oneshottober-mark.png" x="72" y="76" width="208" height="208"/>
+
+  <text x="336" y="116" fill="#726c5c" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="20" font-weight="600" letter-spacing="3">ONESHOTTOBER</text>
+  <text x="336" y="190" fill="#23211c" font-family="Iowan Old Style, Palatino Linotype, Palatino, Georgia, serif" font-size="62" font-weight="600">
+    <tspan x="336" dy="0">One prompt, one shot,</tspan>
+    <tspan x="336" dy="70">shown out loud.</tspan>
+  </text>
+
+  <line x1="72" y1="412" x2="1128" y2="412" stroke="#23211c" stroke-width="2"/>
+
+  <text x="72" y="474" fill="#23211c" font-family="Iowan Old Style, Palatino Linotype, Palatino, Georgia, serif" font-size="42">31 days of making intention visible.</text>
+  <text x="72" y="550" fill="#726c5c" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="600" letter-spacing="2">OCTOBER 1–31</text>
+  <text x="1128" y="550" fill="#726c5c" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="18" text-anchor="end">oneshottober.vercel.app</text>
+</svg>

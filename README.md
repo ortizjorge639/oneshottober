@@ -6,8 +6,9 @@ This repository contains the static OneShotTober site and 31-day prompt
 challenge. It uses plain HTML and CSS with no dependencies or build step.
 `index.html` contains the main page, and `example.html` contains the embedded
 generative-canvas one-shot example. The supplied OneShotTober mark lives at
-`assets/oneshottober-mark.png` and is used in the hero, favicon, and social
-sharing metadata.
+`assets/oneshottober-mark.png` and is used in the hero and favicon. The
+editable social-card source is `assets/oneshottober-card.svg`; its
+1200-by-630 PNG export is used in the Open Graph and X metadata.
 
 ## Run locally
 
